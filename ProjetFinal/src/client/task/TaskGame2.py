@@ -46,6 +46,27 @@ class TaskGame2(threading.Thread):
 
             if (self.personne in self.main.fenetregame.findlist and self.count != -1):
                 self.count += 1
+                if (self.text3 != None):
+                    self.main.fenetregame.canvas.delete(self.text3)
+
+                if (self.text4 != None):
+                    self.main.fenetregame.canvas.delete(self.text4)
+                z = int((float(self.count/50.0))*40.0)
+
+                i = 0
+                msg = " "
+                msg2 = " "
+                while i < 40:
+                    if (i <= z):
+                        msg += "|"
+                        msg2 += " "
+                    else:
+                        msg += " "
+                        msg2 += "|"
+                    i += 1
+                self.text3 = self.main.writeText(650, 50, msg, self.main.fenetregame.canvas, False, 15, '#64FF37')
+                self.text4 = self.main.writeText(650, 50, msg2, self.main.fenetregame.canvas, False, 15, '#FF4650')
+
 
 
             elif (len(self.main.fenetregame.findlist) != 0):
@@ -54,10 +75,11 @@ class TaskGame2(threading.Thread):
                     self.count = 0
                     msg = "["
                     i = 0
-                    while i < 20:
+                    while i < 40:
                         msg+=" "
-                    self.text2 = self.main.writeText(650, 635, msg + "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
-                    print(str((self.count/50)*20))
+                        i+= 1
+                    self.text2 = self.main.writeText(653, 50, msg + "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
+
             else:
                 if (self.text2 != None):
                     self.main.fenetregame.canvas.delete(self.text2)
