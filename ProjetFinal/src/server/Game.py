@@ -17,8 +17,11 @@ class Game():
         self.clientingame = []
         self.isrunning = False
         self.hideplayer = -1
+        print("Stoped Game")
 
     def start(self):
+         
+        print("Starting Game...")
         self.map = []
         nb = random.randint(1,2)
         fichier = open("map"+str(nb)+".txt", "r")
@@ -51,3 +54,5 @@ class Game():
             self.main.sender.publish(self.main.getClient(a), PacketStartGame().init(self.main, msg)) 
             self.main.sender.publish(self.main.getClient(a), PacketSendMap().init(self.main))
         self.isrunning = True
+        print("Started Game... ")
+        print(str(self.main.MAXPLAYER) + " Players")

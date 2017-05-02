@@ -206,9 +206,11 @@ class Main:
                 self.listforfenetre["sizemini"] = False
        
     def writeText(self, x, y, text2, canvas, fond, size):
+        idtext = None
         if (fond):
             canvas.create_rectangle(x-15, y-20, x+len(text2)*10, y+20, fill = "#009FE3", width=0)
-        canvas.create_text(x, y,text=text2,fill='#E94E1B',font='Helvetica '+str(size))  
+        idtext = canvas.create_text(x, y,text=text2,fill='#E94E1B',font='Helvetica '+str(size))
+        return idtext
     #Appelé quand on appuye sur une touche #Je t'ai configurer les couleurs
     def key(self, event):
         if (event.keysym == "Return" and self.listforfenetre["entrytchat"].get() != ''):

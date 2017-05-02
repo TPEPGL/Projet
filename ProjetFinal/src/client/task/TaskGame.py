@@ -23,7 +23,6 @@ class TaskGame(threading.Thread):
         def run(self):
             time.sleep(1)
             while(self.main.running and self.main.ingame):
-                time.sleep(0.05)
                 if (len(self.main.fenetregame.touche) != 0):
                     posy = self.main.fenetregame.posy
                     posx = self.main.fenetregame.posx
@@ -43,3 +42,4 @@ class TaskGame(threading.Thread):
                         if (self.main.game.map[int((posx)/22)][int((posy-21)/22)] == 0 and self.main.game.map[int((posx-11)/22)][int((posy-21)/22)] == 0):
                             posy -= 11
                     self.main.sender.publish(self.PacketMove().init(self.main, posx, posy))
+                time.sleep(0.05)

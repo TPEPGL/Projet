@@ -20,15 +20,17 @@ class TaskGame2(threading.Thread):
         self.personne = None
         self.count = 0
         self.timer = 0
+        self.text = None
 
     # ~ Fonction run de la thread
     def run(self):
         time.sleep(1)
         while (self.main.running and self.main.ingame):
-            time.sleep(0.1)
             if (self.timer != -1):
                 self.timer += 1
-                self.main.writeText(650, 10, str(60*5-int(self.timer/10)), self.main.fenetregame.canvas, True, 10)
+                if (self.text != None):
+                    self.main.fenetregame.canvas.delete(self.text)
+                self.text = self.main.writeText(650, 10, str(60*5-int(self.timer/10)), self.main.fenetregame.canvas, True, 10)
             if (self.timer > 10 * 60 * 5):
                 self.main.sender.publish(self.PacketWin().init(self.main, "hider"))
                 self.timer = -1
@@ -45,3 +47,4 @@ class TaskGame2(threading.Thread):
             else:
                 self.count = 0
                 self.personne = 0
+            time.sleep(0.1)

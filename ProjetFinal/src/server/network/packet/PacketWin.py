@@ -27,7 +27,7 @@ class PacketWin():
         if (self.main.game.isrunning):
             for a in self.main.game.clientingame:
                 self.main.sender.publish(self.main.getClient(a), PacketWin().init(self.main, self.win))
-            self.main.stop()
+            self.main.game.stop()
             if (len(self.main.game.clientinattente) < 3):
                 for b in self.main.game.clientinattente:
                     self.main.sender.publish(self.main.getClient(b), PacketInfoGame().init(self.main, self.win))
