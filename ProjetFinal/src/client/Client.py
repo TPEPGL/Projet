@@ -38,7 +38,7 @@ class Main:
     #Initialisation
     def __init__(self):
         #Ip du serveur
-        #self.host = '164.132.205.76'
+        #self.host = '164.132.202.204'
         self.host = 'localhost'
         #Port
         self.port = 12800
@@ -82,7 +82,9 @@ class Main:
         
         self.ingame = False
          
-
+    def enterkey(self, event):
+        if event.keysym == "Return":
+            self.verif()
     def onStart(self):
         #Initialisation Création de la fenetre
         self.fenetre = Tk()
@@ -94,6 +96,7 @@ class Main:
         self.champ = Entry(frame, bg ='ivory3', fg='maroon')
         self.champ.grid(row = 0, column =1)
         Button(frame,text="Valider",fg='navy', command=self.verif).grid(row = 1, column =1)
+        self.fenetre.bind_all("<Key>", self.enterkey)
         frame.pack()
         self.fenetre.mainloop()
         #En attente du remplissable du pseudo
@@ -205,11 +208,11 @@ class Main:
                 self.fenetre.minsize(1200, 690)
                 self.listforfenetre["sizemini"] = False
        
-    def writeText(self, x, y, text2, canvas, fond, size):
+    def writeText(self, x, y, text2, canvas, fond, size, color):
         idtext = None
         if (fond):
             canvas.create_rectangle(x-15, y-20, x+len(text2)*10, y+20, fill = "#009FE3", width=0)
-        idtext = canvas.create_text(x, y,text=text2,fill='#E94E1B',font='Helvetica '+str(size))
+        idtext = canvas.create_text(x, y,text=text2,fill=color,font='Helvetica '+str(size))
         return idtext
     #Appelé quand on appuye sur une touche #Je t'ai configurer les couleurs
     def key(self, event):

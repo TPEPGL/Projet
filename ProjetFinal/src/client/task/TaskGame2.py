@@ -21,6 +21,9 @@ class TaskGame2(threading.Thread):
         self.count = 0
         self.timer = 0
         self.text = None
+        self.text2 = None
+        self.text3 = None
+        self.text4 = None
 
     # ~ Fonction run de la thread
     def run(self):
@@ -30,7 +33,10 @@ class TaskGame2(threading.Thread):
                 self.timer += 1
                 if (self.text != None):
                     self.main.fenetregame.canvas.delete(self.text)
-                self.text = self.main.writeText(650, 10, str(60*5-int(self.timer/10)), self.main.fenetregame.canvas, True, 10)
+                t = 60*5-int(self.timer/10)
+                tminute = int(t/60)
+                tseconde = t-tminute*60
+                self.text = self.main.writeText(650, 12, str(tminute)+"m "+str(tseconde)+"s", self.main.fenetregame.canvas, False, 15, '#D9D526')
             if (self.timer > 10 * 60 * 5):
                 self.main.sender.publish(self.PacketWin().init(self.main, "hider"))
                 self.timer = -1
@@ -40,11 +46,23 @@ class TaskGame2(threading.Thread):
 
             if (self.personne in self.main.fenetregame.findlist and self.count != -1):
                 self.count += 1
+               
+            
             elif (len(self.main.fenetregame.findlist) != 0):
                 if (self.main.fenetregame.other[self.main.fenetregame.findlist[0]][4] == 1):
                     self.personne = self.main.fenetregame.findlist[0]
                     self.count = 0
+                    self.text2 = self.main.writeText(650, 635, "[                                                                  ]", self.main.fenetregame.canvas, False, 15, '#D9D526')
+                    
             else:
+                if (self.text2 != None):
+                    self.main.fenetregame.canvas.delete(self.text2)
+                    
+                if (self.text3 != None):
+                    self.main.fenetregame.canvas.delete(self.text3)
+                    
+                if (self.text4 != None):
+                    self.main.fenetregame.canvas.delete(self.text4)
                 self.count = 0
                 self.personne = 0
             time.sleep(0.1)

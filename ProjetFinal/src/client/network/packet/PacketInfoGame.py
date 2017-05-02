@@ -40,10 +40,10 @@ class PacketInfoGame():
             self.main.menu = "file"
             self.main.listforfenetre["canvasgame"].create_image(600,250,image=self.main.image["fondattente"])
             self.main.listforfenetre["canvasgame"].create_image(1182,484,image=self.main.image["tchatlogo"])
-            self.main.writeText(610,270, str(self.nbclient), self.main.listforfenetre["canvasgame"], True, 25)
+            self.main.writeText(610,270, str(self.nbclient), self.main.listforfenetre["canvasgame"], True, 25, '#E94E1B')
         elif self.infoserver == "on":
             self.main.menu = "file"
             self.main.listforfenetre["canvasgame"].create_image(600,250,image=self.main.image["fondattente2"])
             self.main.listforfenetre["canvasgame"].create_image(1182,484,image=self.main.image["tchatlogo"])
-            self.main.writeText(610,270, str(self.nbclient), self.main.listforfenetre["canvasgame"], True, 25)
+            self.main.writeText(610,270, str(self.nbclient), self.main.listforfenetre["canvasgame"], True, 25, '#E94E1B')
         return self

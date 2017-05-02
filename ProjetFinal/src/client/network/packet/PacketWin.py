@@ -41,17 +41,17 @@ class PacketWin():
     #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le méssage dans le tchat
     def handle(self):
         role = 0
+        self.main.ingame = False
         if (self.win == "hider"):
             role = 1
         if (self.main.fenetregame.role == role):
-            self.main.writeText(610,270, "Vous avez gagne !", self.main.fenetregame.canvas, False, 60)
+            self.main.writeText(610,270, "Vous avez gagne !", self.main.fenetregame.canvas, False, 60, '#E94E1B')
         else:
-            self.main.writeText(610,270, "Vous avez perdu !", self.main.fenetregame.canvas, False, 60)
+            self.main.writeText(610,270, "Vous avez perdu !", self.main.fenetregame.canvas, False, 60, '#E94E1B')
         time.sleep(5)
         self.main.fenetregame.destroy()
         self.main.game = None
         self.main.fenetregame = None
         self.main.menu = "principale"
         self.main.listforfenetre["canvasgame"].create_image(600,250,image=self.main.image["fondprincipale"])
-        self.main.ingame = False
         return self
