@@ -9,12 +9,12 @@ class PacketSendMap():
     '''
     classdocs
     '''
-    #Initialisation de la class avec les variables par défault
+    #Initialisation de la class avec les variables par dï¿½fault
     def __init__(self):
         self.map = []
         self.main = None
         
-    #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau découper par le séparateur # recu dans Receiver
+    #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau dï¿½couper par le sï¿½parateur # recu dans Receiver
     def read(self, main, value):
         self.msg = value[1]
         self.msg = self.msg.split("_")
@@ -26,7 +26,7 @@ class PacketSendMap():
         self.main = main
         return self
         
-    #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le méssage dans le tchat
+    #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le mï¿½ssage dans le tchat
     def handle(self):
         self.main.game.map = self.map
         sizex = len(self.map)*22
@@ -122,13 +122,16 @@ class PacketSendMap():
         for b in map:
             self.main.fenetregame.canvas.itemconfig(b, image=self.main.image["sol"])
         self.main.fenetregame.maptemp = map
+        self.main.taskgame2.x = len(self.main.game.map[0])*22/2
+        self.main.fenetregame.canvas.tag_lower(self.main.fenetregame.canvas.create_image(len(self.main.game.map[0])*22/2, len(self.main.game.map)*22/2,image=self.main.image["fondgame"]))
+
         for b in self.main.fenetregame.other:
-                if (self.main.fenetregame.listitem[int((self.main.fenetregame.other[b][0]) / 22)][int((self.main.fenetregame.other[b][1]) / 22)] in self.main.fenetregame.maptemp):
-                    self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[b][3])
-                    if b not in self.main.fenetregame.findlist:
-                        self.main.fenetregame.findlist.append(b)
-                else:
-                    self.main.fenetregame.canvas.tag_lower(self.main.fenetregame.other[b][3])
-                    if b in self.main.fenetregame.findlist:
-                        self.main.fenetregame.findlist.remove(b)
+            if (self.main.fenetregame.listitem[int((self.map[b][0]) / 22)][int((self.main.fenetregame.other[b][1]) / 22)] in self.main.fenetregame.maptemp):
+                self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[b][3])
+                if b not in self.main.fenetregame.findlist:
+                    self.main.fenetregame.findlist.append(b)
+            else:
+                self.main.fenetregame.canvas.tag_lower(self.main.fenetregame.other[b][3])
+                if b in self.main.fenetregame.findlist:
+                    self.main.fenetregame.findlist.remove(b)
         return self

@@ -25,7 +25,7 @@ class TaskGame2(threading.Thread):
         self.text2b = None
         self.text3 = None
         self.text4 = None
-        self.x = 530
+        self.x = 0
         self.size = 40.0
 
         # ~ Fonction run de la thread
@@ -39,7 +39,7 @@ class TaskGame2(threading.Thread):
                 t = 60*5-int(self.timer/10)
                 tminute = int(t/60)
                 tseconde = t-tminute*60
-                self.text = self.main.writeText(650, 12, str(tminute)+"m "+str(tseconde)+"s", self.main.fenetregame.canvas, False, 15, '#D9D526')
+                self.text = self.main.writeText(self.x, 12, str(tminute)+"m "+str(tseconde)+"s", self.main.fenetregame.canvas, False, 15, '#D9D526')
             if (self.timer > 10 * 60 * 5):
                 self.main.sender.publish(self.PacketWin().init(self.main, "hider"))
                 self.timer = -1
@@ -56,8 +56,8 @@ class TaskGame2(threading.Thread):
                     self.main.fenetregame.canvas.delete(self.text4)
                 z = int((float(self.count/50.0))*self.size)
 
-                self.text3 = self.main.fenetregame.canvas.create_rectangle(self.x, 50, self.x+z*6, 60, fill = "#64FF37", width=0)
-                self.text4 = self.main.fenetregame.canvas.create_rectangle(self.x+z*6, 50, self.x+self.size*6, 60, fill = "#FF4650", width=0)
+                self.text3 = self.main.fenetregame.canvas.create_rectangle(self.x-self.size*3, 50, self.x+3*(z*2-self.size), 60, fill = "#64FF37", width=0)
+                self.text4 = self.main.fenetregame.canvas.create_rectangle(self.x+3*(z*2-self.size), 50, self.x+3*(self.size*2-self.size), 60, fill = "#FF4650", width=0)
 
 
 
@@ -77,8 +77,8 @@ class TaskGame2(threading.Thread):
                 for p in range(len(self.main.fenetregame.findlist)):
                     if (self.main.fenetregame.other[self.main.fenetregame.findlist[p]][4] == 1):
                         self.personne = self.main.fenetregame.findlist[p]
-                        self.text2a = self.main.writeText(self.x, 52, "[", self.main.fenetregame.canvas, False, 15, '#D9D526')
-                        self.text2b = self.main.writeText(self.x+self.size*6, 52, "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
+                        self.text2a = self.main.writeText(self.x-self.size*3, 52, "[", self.main.fenetregame.canvas, False, 15, '#D9D526')
+                        self.text2b = self.main.writeText(self.x+self.size*3, 52, "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
                         break
             else:
                 if (self.text2a != None):

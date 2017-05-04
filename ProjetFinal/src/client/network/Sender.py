@@ -17,8 +17,8 @@ class Sender(object):
     
     def publish(self, packet):
         try:
-            #Envoie un packet au serveur, le packet va écrire une chaine de caractère de la forme : Protocol(Nombre en fonction du packet) # Information1 # Information2 # ........
-            #Cette chaine de carractère va être après transformer en byte grâce à .encode()
+            #Envoie un packet au serveur, le packet va ï¿½crire une chaine de caractï¿½re de la forme : Protocol(Nombre en fonction du packet) # Information1 # Information2 # ........
+            #Cette chaine de carractï¿½re va ï¿½tre aprï¿½s transformer en byte grï¿½ce ï¿½ .encode()
             self.main.connexion_avec_serveur.send((self.main.encode(packet.write())+"_-_").encode())
         except socket.error:
             print("Server Closed")

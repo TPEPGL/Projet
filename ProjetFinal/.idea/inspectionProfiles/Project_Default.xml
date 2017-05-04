@@ -1,0 +1,43 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
+      <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="src.client.Client.showwarning" />
+          <option value="src.client.Client.len" />
+          <option value="src.client.Client.END" />
+          <option value="src.client.Client.str" />
+          <option value="src.client.Client.askokcancel" />
+          <option value="src.client.Client.OSError" />
+          <option value="src.client.Client.ConnectionRefusedError" />
+          <option value="src.client.Client.Entry" />
+          <option value="src.client.Client.StringVar" />
+          <option value="src.client.Client.Listbox" />
+          <option value="src.client.Client.Y" />
+          <option value="src.client.Client.RIGHT" />
+          <option value="src.client.Client.Scrollbar" />
+          <option value="src.client.Client.GROOVE" />
+          <option value="src.client.Client.Frame" />
+          <option value="src.client.Client.PhotoImage" />
+          <option value="src.client.Client.TOP" />
+          <option value="src.client.Client.Canvas" />
+          <option value="src.client.Client.Tk" />
+          <option value="src.client.Client.Button" />
+          <option value="src.client.Client.Label" />
+          <option value="src.client.Client.numpy" />
+          <option value="src.client.Client.task" />
+          <option value="src.client.Client.network" />
+          <option value="socket" />
+          <option value="os" />
+          <option value="src.client.Client.tkinter" />
+          <option value="src.client.Client.threading" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

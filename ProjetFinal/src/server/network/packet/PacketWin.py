@@ -30,7 +30,7 @@ class PacketWin():
             self.main.game.stop()
             if (len(self.main.game.clientinattente) < 3):
                 for b in self.main.game.clientinattente:
-                    self.main.sender.publish(self.main.getClient(b), PacketInfoGame().init(self.main, self.win))
+                    self.main.sender.publish(self.main.getClient(b), PacketInfoGame().init(self.main, "off#"+str(len(self.main.game.clientinattente))))
             else:
                 self.main.game.start()
 
