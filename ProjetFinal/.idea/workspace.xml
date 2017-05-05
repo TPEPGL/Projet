@@ -14,8 +14,8 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/ProjetFinal$Client.coverage" NAME="Client Coverage Results" MODIFIED="1493971907255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/client" />
-    <SUITE FILE_PATH="coverage/ProjetFinal$Server.coverage" NAME="Server Coverage Results" MODIFIED="1493971908270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/server" />
+    <SUITE FILE_PATH="coverage/ProjetFinal$Client.coverage" NAME="Client Coverage Results" MODIFIED="1493972000926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/client" />
+    <SUITE FILE_PATH="coverage/ProjetFinal$Server.coverage" NAME="Server Coverage Results" MODIFIED="1493972001990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/server" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -30,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/src/client/task/TaskGame2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.7062635">
-              <caret line="43" column="86" selection-start-line="43" selection-start-column="86" selection-end-line="43" selection-end-column="86" />
+              <caret line="43" column="99" selection-start-line="43" selection-start-column="99" selection-end-line="43" selection-end-column="99" />
               <folding>
                 <element signature="e#63#79#0" expanded="true" />
               </folding>
@@ -1010,12 +1010,12 @@
       <workItem from="1493926101879" duration="1908000" />
       <workItem from="1493928829829" duration="1454000" />
       <workItem from="1493967824232" duration="613000" />
-      <workItem from="1493970774615" duration="1135000" />
+      <workItem from="1493970774615" duration="1283000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14280000" />
+    <option name="totallyTimeSpent" value="14428000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1478,7 +1478,7 @@
     <entry file="file://$PROJECT_DIR$/src/client/task/TaskGame2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7062635">
-          <caret line="43" column="86" selection-start-line="43" selection-start-column="86" selection-end-line="43" selection-end-column="86" />
+          <caret line="43" column="99" selection-start-line="43" selection-start-column="99" selection-end-line="43" selection-end-column="99" />
           <folding>
             <element signature="e#63#79#0" expanded="true" />
           </folding>

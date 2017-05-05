@@ -41,7 +41,7 @@ class TaskGame2(threading.Thread):
                 if self.zone is not None:
                     self.main.fenetregame.canvas.delete(self.zone)
                 z = (float(50-self.piegecount)/50.0)*40
-                self.zone = self.main.fenetregame.canvas.create_rectangle(0, 0, z, 30, fill="red", stipple="gray50")
+                self.zone = self.main.fenetregame.canvas.create_rectangle(0, 0, z, 30, fill="gray50", stipple="gray50")
 
             if self.piegecount > 10*5:
                 self.piege += 1
