@@ -27,32 +27,53 @@ class TaskGame2(threading.Thread):
         self.text4 = None
         self.x = 0
         self.size = 40.0
+        self.piege = 0
+        self.piegecount = 0
+        self.text5 = self.main.writeText(13, 13, str(self.piege), self.main.fenetregame.canvas, False, 15, '#D9D526')
+        self.zone = None
 
         # ~ Fonction run de la thread
     def run(self):
         time.sleep(1)
-        while (self.main.running and self.main.ingame):
-            if (self.timer != -1):
+        while self.main.running and self.main.ingame:
+            if self.piege < 3:
+                self.piegecount+= 1
+                if self.zone is not None:
+                    self.main.fenetregame.canvas.delete(self.zone)
+                z = (float(50-self.piegecount)/50.0)*40
+                self.zone = self.main.fenetregame.canvas.create_rectangle(0, 0, z, 30, fill="red", stipple="gray50")
+
+            if self.piegecount > 10*5:
+                self.piege += 1
+                self.piegecount = 0
+                if self.text5 is not None:
+                    self.main.fenetregame.canvas.delete(self.text5)
+                self.text5 = self.main.writeText(13, 13, str(self.piege), self.main.fenetregame.canvas, False, 15, '#D9D526')
+
+
+
+
+            if self.timer != -1:
                 self.timer += 1
-                if (self.text != None):
+                if self.text != None:
                     self.main.fenetregame.canvas.delete(self.text)
                 t = 60*5-int(self.timer/10)
                 tminute = int(t/60)
                 tseconde = t-tminute*60
                 self.text = self.main.writeText(self.x, 12, str(tminute)+"m "+str(tseconde)+"s", self.main.fenetregame.canvas, False, 15, '#D9D526')
-            if (self.timer > 10 * 60 * 5):
+            if self.timer > 10 * 60 * 5:
                 self.main.sender.publish(self.PacketWin().init(self.main, "hider"))
                 self.timer = -1
-            if (self.count >= 5 * 10):
+            if self.count >= 5 * 10:
                 self.main.sender.publish(self.PacketWin().init(self.main, "finder"))
                 self.count = -1
 
-            if (self.personne in self.main.fenetregame.findlist and self.count != -1):
+            if self.personne in self.main.fenetregame.findlist and self.count != -1:
                 self.count += 1
-                if (self.text3 != None):
+                if self.text3 is not None:
                     self.main.fenetregame.canvas.delete(self.text3)
 
-                if (self.text4 != None):
+                if self.text4 is not None:
                     self.main.fenetregame.canvas.delete(self.text4)
                 z = int((float(self.count/50.0))*self.size)
 
@@ -61,35 +82,35 @@ class TaskGame2(threading.Thread):
 
 
 
-            elif (len(self.main.fenetregame.findlist) != 0):
-                if (self.text2a != None):
+            elif len(self.main.fenetregame.findlist) != 0:
+                if self.text2a is not None:
                     self.main.fenetregame.canvas.delete(self.text2a)
-                if (self.text2b != None):
+                if self.text2b is not None:
                     self.main.fenetregame.canvas.delete(self.text2b)
 
-                if (self.text3 != None):
+                if self.text3 is not None:
                     self.main.fenetregame.canvas.delete(self.text3)
 
-                if (self.text4 != None):
+                if self.text4 is not None:
                     self.main.fenetregame.canvas.delete(self.text4)
                 self.count = 0
                 self.personne = 0
                 for p in range(len(self.main.fenetregame.findlist)):
-                    if (self.main.fenetregame.other[self.main.fenetregame.findlist[p]][4] == 1):
+                    if self.main.fenetregame.other[self.main.fenetregame.findlist[p]][4] == 1:
                         self.personne = self.main.fenetregame.findlist[p]
                         self.text2a = self.main.writeText(self.x-self.size*3, 52, "[", self.main.fenetregame.canvas, False, 15, '#D9D526')
                         self.text2b = self.main.writeText(self.x+self.size*3, 52, "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
                         break
             else:
-                if (self.text2a != None):
+                if self.text2a is not None:
                     self.main.fenetregame.canvas.delete(self.text2a)
-                if (self.text2b != None):
+                if self.text2b is not None:
                     self.main.fenetregame.canvas.delete(self.text2b)
 
-                if (self.text3 != None):
+                if self.text3 is not None:
                     self.main.fenetregame.canvas.delete(self.text3)
 
-                if (self.text4 != None):
+                if self.text4 is not None:
                     self.main.fenetregame.canvas.delete(self.text4)
                 self.count = 0
                 self.personne = 0

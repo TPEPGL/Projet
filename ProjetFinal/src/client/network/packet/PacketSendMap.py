@@ -13,7 +13,7 @@ class PacketSendMap():
     def __init__(self):
         self.map = []
         self.main = None
-        
+
     #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau d�couper par le s�parateur # recu dans Receiver
     def read(self, main, value):
         self.msg = value[1]
@@ -25,7 +25,7 @@ class PacketSendMap():
             self.map.append(c)
         self.main = main
         return self
-        
+
     #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le m�ssage dans le tchat
     def handle(self):
         self.main.game.map = self.map
@@ -67,7 +67,7 @@ class PacketSendMap():
         self.y = self.main.fenetregame.posy
         map = []
         map.append(self.main.fenetregame.listitem[int(self.x / 22)][int(self.y / 22)])
-            
+
         if (self.main.game.map[int((self.x + 22) / 22)][int(self.y / 22)] == 0):
             map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int(self.y / 22)])
             if (self.main.game.map[int((self.x + 22) / 22)][int((self.y + 22) / 22)] == 0 and self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
@@ -79,9 +79,9 @@ class PacketSendMap():
                 if (self.main.game.map[int((self.x + 66) / 22)][int(self.y / 22)] == 0):
                     map.append(self.main.fenetregame.listitem[int((self.x + 66) / 22)][int((self.y) / 22)])
                 if (self.main.game.map[int((self.x + 22) / 22)][int((self.y - 22) / 22)] == 0 and self.main.game.map[int((self.x + 44) / 22)][int((self.y - 22) / 22)] == 0 and self.main.game.map[int(self.x / 22)][int((self.y - 22) / 22)] == 0):
-                    map.append(self.main.fenetregame.listitem[int((self.x + 44) / 22)][int((self.y - 22) / 22)]) 
+                    map.append(self.main.fenetregame.listitem[int((self.x + 44) / 22)][int((self.y - 22) / 22)])
                 if (self.main.game.map[int((self.x + 22) / 22)][int((self.y + 22) / 22)] == 0 and self.main.game.map[int((self.x + 44) / 22)][int((self.y + 22) / 22)] == 0 and self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
-                    map.append(self.main.fenetregame.listitem[int((self.x + 44) / 22)][int((self.y + 22) / 22)])                                       
+                    map.append(self.main.fenetregame.listitem[int((self.x + 44) / 22)][int((self.y + 22) / 22)])
         if (self.main.game.map[int((self.x - 22) / 22)][int(self.y / 22)] == 0):
             map.append(self.main.fenetregame.listitem[int((self.x - 22) / 22)][int(self.y / 22)])
             if (self.main.game.map[int((self.x - 22) / 22)][int((self.y + 22) / 22)] == 0 and self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
@@ -89,13 +89,13 @@ class PacketSendMap():
             if (self.main.game.map[int((self.x - 22) / 22)][int((self.y - 22) / 22)] == 0 and self.main.game.map[int(self.x / 22)][int((self.y - 22) / 22)] == 0):
                 map.append(self.main.fenetregame.listitem[int((self.x - 22) / 22)][int((self.y - 22) / 22)])
             if (self.main.game.map[int((self.x - 44) / 22)][int(self.y / 22)] == 0):
-                map.append(self.main.fenetregame.listitem[int((self.x - 44) / 22)][int(self.y / 22)]) 
+                map.append(self.main.fenetregame.listitem[int((self.x - 44) / 22)][int(self.y / 22)])
                 if (self.main.game.map[int((self.x - 66) / 22)][int(self.y / 22)] == 0):
-                    map.append(self.main.fenetregame.listitem[int((self.x - 66) / 22)][int(self.y / 22)]) 
+                    map.append(self.main.fenetregame.listitem[int((self.x - 66) / 22)][int(self.y / 22)])
                 if (self.main.game.map[int((self.x - 22) / 22)][int((self.y - 22) / 22)] == 0 and self.main.game.map[int((self.x - 44) / 22)][int((self.y - 22) / 22)] == 0 and self.main.game.map[int(self.x / 22)][int((self.y - 22) / 22)] == 0):
-                    map.append(self.main.fenetregame.listitem[int((self.x - 44) / 22)][int((self.y - 22) / 22)]) 
+                    map.append(self.main.fenetregame.listitem[int((self.x - 44) / 22)][int((self.y - 22) / 22)])
                 if (self.main.game.map[int((self.x - 22) / 22)][int((self.y + 22) / 22)] == 0 and self.main.game.map[int((self.x - 44) / 22)][int((self.y + 22) / 22)] == 0 and self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
-                    map.append(self.main.fenetregame.listitem[int((self.x - 44) / 22)][int((self.y + 22) / 22)])                 
+                    map.append(self.main.fenetregame.listitem[int((self.x - 44) / 22)][int((self.y + 22) / 22)])
         if (self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
             map.append(self.main.fenetregame.listitem[int(self.x / 22)][int((self.y + 22) / 22)])
             if (self.main.game.map[int(self.x / 22)][int((self.y + 44) / 22)] == 0):
@@ -105,7 +105,7 @@ class PacketSendMap():
                 if (self.main.game.map[int((self.x - 22) / 22)][int((self.y + 22) / 22)] == 0 and self.main.game.map[int((self.x - 22) / 22)][int((self.y + 44) / 22)] == 0 and self.main.game.map[int((self.x-22) / 22)][int((self.y) / 22)] == 0):
                     map.append(self.main.fenetregame.listitem[int((self.x - 22) / 22)][int((self.y + 44) / 22)])
                 if (self.main.game.map[int((self.x + 22) / 22)][int((self.y + 22) / 22)] == 0 and self.main.game.map[int((self.x + 22) / 22)][int((self.y + 44) / 22)] == 0 and self.main.game.map[int((self.x+22) / 22)][int((self.y) / 22)] == 0):
-                    map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int((self.y + 44) / 22)])  
+                    map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int((self.y + 44) / 22)])
         if (self.main.game.map[int(self.x / 22)][int((self.y - 22) / 22)] == 0):
             map.append(self.main.fenetregame.listitem[int(self.x / 22)][int((self.y - 22) / 22)])
             if (self.main.game.map[int(self.x / 22)][int((self.y - 44) / 22)] == 0):
@@ -115,7 +115,7 @@ class PacketSendMap():
                 if (self.main.game.map[int((self.x - 22) / 22)][int((self.y - 22) / 22)] == 0 and self.main.game.map[int((self.x - 22) / 22)][int((self.y - 44) / 22)] == 0 and self.main.game.map[int((self.x-22) / 22)][int((self.y) / 22)] == 0):
                     map.append(self.main.fenetregame.listitem[int((self.x - 22) / 22)][int((self.y - 44) / 22)])
                 if (self.main.game.map[int((self.x + 22) / 22)][int((self.y - 22) / 22)] == 0 and self.main.game.map[int((self.x + 22) / 22)][int((self.y - 44) / 22)] == 0 and self.main.game.map[int((self.x+22) / 22)][int((self.y) / 22)] == 0):
-                    map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int((self.y - 44) / 22)])                
+                    map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int((self.y - 44) / 22)])
         for a in self.main.fenetregame.maptemp:
             if (a not in map):
                 self.main.fenetregame.canvas.itemconfig(a, image=self.main.image["solsombre"])
