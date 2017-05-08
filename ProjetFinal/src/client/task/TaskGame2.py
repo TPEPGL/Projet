@@ -29,10 +29,11 @@ class TaskGame2(threading.Thread):
         self.size = 40.0
         self.piege = 0
         self.piegecount = 0
-        self.text5 = self.main.writeText(13, 13, str(self.piege), self.main.fenetregame.canvas, False, 15, '#D9D526')
         self.zone = None
+        self.zone2 = self.main.fenetregame.canvas.create_rectangle(0, 0, 22, 22, fill="black", borderwidth=0)
+        self.text5 = self.main.writeText(13, 13, str(self.piege), self.main.fenetregame.canvas, False, 15, '#D9D526')
 
-        # ~ Fonction run de la thread
+# ~ Fonction run de la thread
     def run(self):
         time.sleep(1)
         while self.main.running and self.main.ingame:
@@ -40,15 +41,15 @@ class TaskGame2(threading.Thread):
                 self.piegecount+= 1
                 if self.zone is not None:
                     self.main.fenetregame.canvas.delete(self.zone)
-                z = (float(50-self.piegecount)/50.0)*40
-                self.zone = self.main.fenetregame.canvas.create_rectangle(0, 0, z, 30, fill="gray50", stipple="gray50")
+                z = (float(50-self.piegecount)/50.0)*22
+                self.zone = self.main.fenetregame.canvas.create_rectangle(0, 0, z, 22, fill="gray50", stipple="gray50")
 
             if self.piegecount > 10*5:
                 self.piege += 1
                 self.piegecount = 0
                 if self.text5 is not None:
                     self.main.fenetregame.canvas.delete(self.text5)
-                self.text5 = self.main.writeText(13, 13, str(self.piege), self.main.fenetregame.canvas, False, 15, '#D9D526')
+                self.text5 = self.main.writeText(11, 11, str(self.piege), self.main.fenetregame.canvas, False, 15, '#D9D526')
 
 
 
