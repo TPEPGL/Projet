@@ -15,6 +15,7 @@ class Game():
         self.hideplayer = -1
         self.map = []
         self.task = None
+        self.bonus = []
         
     def stop(self):
         self.clientingame = []
