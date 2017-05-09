@@ -10,7 +10,7 @@ class PacketBonus():
     '''
     classdocs
     '''
-    #Initialisation de la class avec les variables par défault
+    #Initialisation de la class avec les variables par dï¿½fault
     def __init__(self):
         self.x = 0
         self.y = 0
@@ -19,17 +19,17 @@ class PacketBonus():
         self.id2 = 0
         self.main = None
      
-    #Fonction utiliser pour ENVOYER : Permet de transformer les informations de la class en une chaine de caractère :
+    #Fonction utiliser pour ENVOYER : Permet de transformer les informations de la class en une chaine de caractï¿½re :
     #Exemple : 
     #Protocol de la class = 2
-    #Message à l'envoyer = "Salut toi"
+    #Message ï¿½ l'envoyer = "Salut toi"
     
     # -> 2#Salut toi
     def write(self):
         return (self.main.protocolmap.getProtocol(self)+"#"+self.type)
     
     
-    #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau découper par le séparateur # recu dans Receiver
+    #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau dï¿½couper par le sï¿½parateur # recu dans Receiver
     def read(self, main, value):
         self.type = value[1]
         self.main = main
@@ -47,9 +47,19 @@ class PacketBonus():
             self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["bonus"])
             self.main.fenetregame.listpiege.append(self.main.fenetregame.listitem[self.x][self.y])
         elif(self.type == "remove"):
-            self.main.fenetregame.listpiege.remove(self.main.fenetregame.listitem[self.x][self.y])
-            self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["sol"])
-            if (self.id == self.main.id):
-                print("test")
+            if self.main.fenetregame.listitem[self.x][self.y] in self.main.fenetregame.listpiege:
+                self.main.fenetregame.listpiege.remove(self.main.fenetregame.listitem[self.x][self.y])
+                if self.main.fenetregame.listitem[self.x][self.y] in self.main.fenetregame.maptemp:
+                    self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["sol"])
+                else:
+                    self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["solsombre"])
+                if str(self.id) == self.main.id:
+                    print("to")
+                    print(str(self.id2))
+                    if self.id2 == 0:
+                        print("ro")
+                        self.main.taskbonus.bonus0 = 0
+                        for a in self.main.fenetregame.other:
+                            self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[a][3])
         
         return self

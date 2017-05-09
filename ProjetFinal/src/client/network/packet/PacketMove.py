@@ -9,7 +9,7 @@ class PacketMove():
     '''
     classdocs
     '''
-    # Initialisation de la class avec les variables par défault
+    # Initialisation de la class avec les variables par dï¿½fault
     def __init__(self):
         self.main = None
         self.x = -1
@@ -22,17 +22,17 @@ class PacketMove():
         self.y = y
         return self
         
-    # Fonction utiliser pour ENVOYER : Permet de transformer les informations de la class en une chaine de caractère :
+    # Fonction utiliser pour ENVOYER : Permet de transformer les informations de la class en une chaine de caractï¿½re :
     # Exemple : 
     # Protocol de la class = 2
-    # Message à l'envoyer = "Salut toi"
+    # Message ï¿½ l'envoyer = "Salut toi"
     
     # -> 2#Salut toi
     def write(self):
         return (self.main.protocolmap.getProtocol(self) + "#" + str(self.main.id) + "#" + str(self.x) + "#" + str(self.y))
     
     
-    # Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau découper par le séparateur # recu dans Receiver
+    # Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau dï¿½couper par le sï¿½parateur # recu dans Receiver
     def read(self, main, value):
         self.id = int(value[1])
         self.x = int(value[2])
@@ -40,7 +40,7 @@ class PacketMove():
         self.main = main
         return self
         
-    # Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le méssage dans le tchat
+    # Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le mï¿½ssage dans le tchat
     def handle(self):
         if self.id == int(self.main.id):
             self.main.fenetregame.canvas.move(self.main.fenetregame.Pion, self.y - self.main.fenetregame.posy, self.x - self.main.fenetregame.posx)
@@ -117,7 +117,8 @@ class PacketMove():
                     if b  not in self.main.fenetregame.findlist:
                         self.main.fenetregame.findlist.append(b)
                 else:
-                    self.main.fenetregame.canvas.tag_lower(self.main.fenetregame.other[b][3])
+                    if self.main.taskbonus.bonus0 == -1:
+                        self.main.fenetregame.canvas.tag_lower(self.main.fenetregame.other[b][3])
                     if b in self.main.fenetregame.findlist:
                         self.main.fenetregame.findlist.remove(b)
         else:
@@ -125,12 +126,13 @@ class PacketMove():
             self.main.fenetregame.canvas.move(info[3], self.y - info[1], self.x - info[0])
             self.main.fenetregame.other[self.id][0] = self.x
             self.main.fenetregame.other[self.id][1] = self.y
-            if (self.main.fenetregame.listitem[int((self.x) / 22)][int((self.y) / 22)] in self.main.fenetregame.maptemp):
+            if self.main.fenetregame.listitem[int((self.x) / 22)][int((self.y) / 22)] in self.main.fenetregame.maptemp:
                 self.main.fenetregame.canvas.tag_raise(info[3])
                 if self.id not in self.main.fenetregame.findlist:
                     self.main.fenetregame.findlist.append(self.id)
             else:
-                self.main.fenetregame.canvas.tag_lower(info[3])
+                if self.main.taskbonus.bonus0 == -1:
+                    self.main.fenetregame.canvas.tag_lower(info[3])
                 if self.id in self.main.fenetregame.findlist:
                     self.main.fenetregame.findlist.remove(self.id)
         return self

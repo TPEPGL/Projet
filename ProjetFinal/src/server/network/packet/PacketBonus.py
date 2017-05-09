@@ -18,7 +18,7 @@ class PacketBonus():
         self.y = y
         self.type = type
         self.id = id
-        self.id2 = id
+        self.id2 = id2
         return self
         
     def write(self):

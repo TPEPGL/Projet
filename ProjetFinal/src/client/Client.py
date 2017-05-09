@@ -24,6 +24,7 @@ from network.packet.PacketWin import PacketWin as PacketWin
 from task.TaskUpdateConnect import TaskUpdateConnect
 from task.TaskAnimation import TaskAnimation
 from task.TaskGame2 import TaskGame2
+from task.TaskBonus import TaskBonus
 from numpy import append
 from FenetreGame import FenetreGame
 from Game import Game
@@ -79,6 +80,7 @@ class Main:
         self.taskpiege = None
         self.taskgame2 = None
         self.taskgame = None
+        self.taskbonus = None
         
         self.ingame = False
          
@@ -254,6 +256,9 @@ class Main:
         self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fondingame"])
         self.taskgame2 = TaskGame2(5, "taskgame2", self, PacketWin)
         self.taskgame2.start()
+        self.taskbonus = TaskBonus(6, "taskbonus", self)
+        self.taskbonus.start()
+
     #Pemet d'encoder les caractères spéciaux car le serveur est en Python 2.7
     def encode(self, value):
         value = value.replace("À", "*%00%").replace("Á", "*%01%").replace("Â", "*%02%").replace("Ã", "*%03%").replace("Ä", "*%04%").replace("Å", "*%05%").replace("Æ", "*%06%").replace("Ç", "*%07%").replace("È", "*%08%").replace("É", "*%09%").replace("Ê", "*%0A%").replace("Ë", "*%0B%").replace("Ì", "*%0C%").replace("Í", "*%0D%").replace("Î", "*%0E%").replace("Ï", "*%0F%")
