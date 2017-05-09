@@ -54,11 +54,8 @@ class PacketBonus():
                 else:
                     self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["solsombre"])
                 if str(self.id) == self.main.id:
-                    print("to")
-                    print(str(self.id2))
                     if self.id2 == 0:
-                        print("ro")
-                        self.main.taskbonus.bonus0 = 0
+                        self.main.taskbonus.startbonus0()
                         for a in self.main.fenetregame.other:
                             self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[a][3])
         
