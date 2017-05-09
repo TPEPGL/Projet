@@ -3,6 +3,8 @@
 
 from network.packet.PacketStartGame import PacketStartGame
 from network.packet.PacketSendMap import PacketSendMap
+from network.packet.PacketBonus import PacketBonus
+from task.TaskGame import TaskGame
 import random
 class Game():
     def __init__(self, main):
@@ -12,6 +14,7 @@ class Game():
         self.clientinattente = []
         self.hideplayer = -1
         self.map = []
+        self.task = None
         
     def stop(self):
         self.clientingame = []
@@ -54,5 +57,7 @@ class Game():
             self.main.sender.publish(self.main.getClient(a), PacketStartGame().init(self.main, msg)) 
             self.main.sender.publish(self.main.getClient(a), PacketSendMap().init(self.main))
         self.isrunning = True
+        self.task = TaskGame(1, "game", self.main, PacketBonus)
+        self.task.start()
         print("Started Game... ")
         print(str(self.main.MAXPLAYER) + " Players")
