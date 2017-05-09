@@ -105,9 +105,11 @@ class PacketMove():
                         
             for a in self.main.fenetregame.maptemp:
                 if (a not in map):
-                    self.main.fenetregame.canvas.itemconfig(a, image=self.main.image["solsombre"])
+                    if (a not in self.main.fenetregame.listpiege):
+                       self.main.fenetregame.canvas.itemconfig(a, image=self.main.image["solsombre"])
             for b in map:
-                self.main.fenetregame.canvas.itemconfig(b, image=self.main.image["sol"])
+                 if (b not in self.main.fenetregame.listpiege):
+                    self.main.fenetregame.canvas.itemconfig(b, image=self.main.image["sol"])
             self.main.fenetregame.maptemp = map
             for b in self.main.fenetregame.other:
                 if (self.main.fenetregame.listitem[int((self.main.fenetregame.other[b][0]) / 22)][int((self.main.fenetregame.other[b][1]) / 22)] in self.main.fenetregame.maptemp):

@@ -143,6 +143,7 @@ class Main:
                     self.image["mur"] = PhotoImage(file = self.dir+'\\image\\mur.png')
                     self.image["fond"] = PhotoImage(file = self.dir+'\\image\\tiled-brick.png')
                     self.image["fondgame"] = PhotoImage(file = self.dir+'\\image\\fondgame.png')
+                    self.image["bonus"] = PhotoImage(file = self.dir+'\\image\\bonus.png')
                     
                     self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fond"])
                     self.perso = self.listforfenetre["canvasgame"].create_image(-100,100,image=self.image["PersoMenu"])

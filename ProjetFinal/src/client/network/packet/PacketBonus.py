@@ -16,19 +16,9 @@ class PacketBonus():
         self.y = 0
         self.type = ""
         self.id = 0
+        self.id2 = 0
         self.main = None
      
-        
-        
-    #Fonction utiliser pour ENVOYER : Permet d'initier les variables
-    def init(self, main, type, x, y, id):
-        self.main = main
-        self.x = x
-        self.y = y
-        self.type = type
-        self.id = id
-        return self
-        
     #Fonction utiliser pour ENVOYER : Permet de transformer les informations de la class en une chaine de caractère :
     #Exemple : 
     #Protocol de la class = 2
@@ -45,11 +35,21 @@ class PacketBonus():
         self.main = main
         self.x = int(value[2])
         self.y = int(value[3])
-        self.id = int(value[4])
+        if self.type == "remove":
+            self.id = int(value[4])
+            self.id2 = int(value[5])
         return self
         
     #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le message dans le tchat
     def handle(self):
-        print(str(self.x) + " " + str(self.y))
-        self.main.fenetregame.canvas.delete(self.main.fenetregame.listitem[self.x][self.y])
+        
+        if (self.type == "pose"):
+            self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["bonus"])
+            self.main.fenetregame.listpiege.append(self.main.fenetregame.listitem[self.x][self.y])
+        elif(self.type == "remove"):
+            self.main.fenetregame.listpiege.remove(self.main.fenetregame.listitem[self.x][self.y])
+            self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["sol"])
+            if (self.id == self.main.id):
+                print("test")
+        
         return self
