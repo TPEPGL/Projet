@@ -9,7 +9,7 @@ class ProtocolMap(object):
 
     def __init__(self, main):
         #On enregistrer les protocol en les associant avec le nom d'une class
-        self.protocolmap = { "0" : "PacketUpdate", "1" : "PacketTest", "2" : "PacketChat", "3" : "PacketConnect", "4" : "PacketInfoGame", "5" : "PacketLeaveQueue", "6" : "PacketDisconnect", "7" :"PacketStartGame", "8": "PacketSendMap", "9" : "PacketMove", "A" : "PacketWin"}
+        self.protocolmap = { "0" : "PacketUpdate", "1" : "PacketTest", "2" : "PacketChat", "3" : "PacketConnect", "4" : "PacketInfoGame", "5" : "PacketLeaveQueue", "6" : "PacketDisconnect", "7" :"PacketStartGame", "8": "PacketSendMap", "9" : "PacketMove", "A" : "PacketWin", "B" : "PacketBonus"}
         self.main = main
         
         

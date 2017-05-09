@@ -27,8 +27,8 @@ class TaskGame(threading.Thread):
                     posy = self.main.fenetregame.posy
                     posx = self.main.fenetregame.posx
                     if self.main.touchepref["piege"] in self.main.fenetregame.touche:
-                        self.main.fenetregame.listimage[int((posx)/22)][int((posy)/22)] = PhotoImage(file = self.main.dir+'\\image\\sol.png')
-                        self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[int((posx)/22)][int((posy)/22)], image = self.main.fenetregame.listimage[int((posx)/22)][int((posy)/22)])
+                        print(str(int((posx)/22))+" "+str(int((posy)/22)))
+                           
                     if self.main.touchepref["avancer"] in self.main.fenetregame.touche:
                         if (self.main.game.map[int((posx-21)/22)][int((posy)/22)] == 0 and self.main.game.map[int((posx-21)/22)][int((posy-11)/22)] == 0):
                             posx -= 11

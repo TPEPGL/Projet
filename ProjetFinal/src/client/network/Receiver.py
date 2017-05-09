@@ -15,6 +15,7 @@ from .packet.PacketSendMap import *
 from .packet.PacketStartGame import *
 from .packet.PacketTest import *
 from .packet.PacketWin import *
+from .packet.PacketBonus import *
 
 
 class Receiver(threading.Thread):
