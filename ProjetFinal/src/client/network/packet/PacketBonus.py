@@ -21,7 +21,7 @@ class PacketBonus():
         
         
     #Fonction utiliser pour ENVOYER : Permet d'initier les variables
-    def init(self, main, type, id, x, y):
+    def init(self, main, type, x, y, id):
         self.main = main
         self.x = x
         self.y = y
@@ -50,5 +50,6 @@ class PacketBonus():
         
     #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le message dans le tchat
     def handle(self):
-        self.main.fenetregame.listitem[self.x][self.y] = self.main.fenetregame.canvas.create_image(self.y+11,self.x+11,image=None)
+        print(str(self.x) + " " + str(self.y))
+        self.main.fenetregame.canvas.delete(self.main.fenetregame.listitem[self.x][self.y])
         return self
