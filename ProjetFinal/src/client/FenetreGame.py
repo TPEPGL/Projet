@@ -28,6 +28,7 @@ class FenetreGame(Toplevel):
         self.findlist = []
         self.role = 0
         self.listpiege = []
+        self.invilist = []
 
     def spawnPion(self, x, y, role):
         if (role == 0):

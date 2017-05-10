@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import random
 from .PacketBonus import PacketBonus
 class PacketMove():
 
@@ -37,7 +37,7 @@ class PacketMove():
             self.main.game.bonus.remove(str(int(int(self.x)/22))+"#"+str(int(int(self.y)/22)))
             for a in self.main.game.clientingame:
                 self.main.sender.publish(self.main.getClient(a), PacketMove().init(self.main, self.id, self.x, self.y))
-                self.main.sender.publish(self.main.getClient(a), PacketBonus().init(self.main, "remove", int(int(self.x)/22), int(int(self.y)/22), self.id, 0))
+                self.main.sender.publish(self.main.getClient(a), PacketBonus().init(self.main, "remove", int(int(self.x)/22), int(int(self.y)/22), self.id, random.randint(0, 1)))
         else:   
             for a in self.main.game.clientingame:
                 self.main.sender.publish(self.main.getClient(a), PacketMove().init(self.main, self.id, self.x, self.y))

@@ -21,6 +21,7 @@ from network.packet.PacketInfoGame import PacketInfoGame
 from network.packet.PacketLeaveQueue import PacketLeaveQueue
 from network.packet.PacketUpdate import PacketUpdate as PacketUpdate
 from network.packet.PacketWin import PacketWin as PacketWin
+from network.packet.PacketBonus import PacketBonus as PacketBonus
 from task.TaskUpdateConnect import TaskUpdateConnect
 from task.TaskAnimation import TaskAnimation
 from task.TaskGame2 import TaskGame2
@@ -256,7 +257,7 @@ class Main:
         self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fondingame"])
         self.taskgame2 = TaskGame2(5, "taskgame2", self, PacketWin)
         self.taskgame2.start()
-        self.taskbonus = TaskBonus(6, "taskbonus", self)
+        self.taskbonus = TaskBonus(6, "taskbonus", self, PacketBonus)
         self.taskbonus.start()
 
     #Pemet d'encoder les caractères spéciaux car le serveur est en Python 2.7

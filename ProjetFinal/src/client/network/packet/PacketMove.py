@@ -112,9 +112,10 @@ class PacketMove():
                     self.main.fenetregame.canvas.itemconfig(b, image=self.main.image["sol"])
             self.main.fenetregame.maptemp = map
             for b in self.main.fenetregame.other:
-                if (self.main.fenetregame.listitem[int((self.main.fenetregame.other[b][0]) / 22)][int((self.main.fenetregame.other[b][1]) / 22)] in self.main.fenetregame.maptemp):
-                    self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[b][3])
-                    if b  not in self.main.fenetregame.findlist:
+                if self.main.fenetregame.listitem[int((self.main.fenetregame.other[b][0]) / 22)][int((self.main.fenetregame.other[b][1]) / 22)] in self.main.fenetregame.maptemp:
+                    if b not in self.main.fenetregame.invilist:
+                        self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[b][3])
+                    if b not in self.main.fenetregame.findlist:
                         self.main.fenetregame.findlist.append(b)
                 else:
                     if self.main.taskbonus.bonus0 == -1:
@@ -127,7 +128,8 @@ class PacketMove():
             self.main.fenetregame.other[self.id][0] = self.x
             self.main.fenetregame.other[self.id][1] = self.y
             if self.main.fenetregame.listitem[int((self.x) / 22)][int((self.y) / 22)] in self.main.fenetregame.maptemp:
-                self.main.fenetregame.canvas.tag_raise(info[3])
+                if self.id not in self.main.fenetregame.invilist:
+                    self.main.fenetregame.canvas.tag_raise(info[3])
                 if self.id not in self.main.fenetregame.findlist:
                     self.main.fenetregame.findlist.append(self.id)
             else:
