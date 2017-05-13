@@ -22,8 +22,8 @@ class TaskGame(threading.Thread):
         #~ Fonction run de la thread
         def run(self):
             time.sleep(1)
-            while(self.main.running and self.main.ingame):
-                if (len(self.main.fenetregame.touche) != 0):
+            while self.main.running and self.main.ingame:
+                if len(self.main.fenetregame.touche) != 0:
                     posy = self.main.fenetregame.posy
                     posx = self.main.fenetregame.posx
                     if self.main.touchepref["piege"] in self.main.fenetregame.touche:

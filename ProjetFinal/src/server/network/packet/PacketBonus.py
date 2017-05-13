@@ -30,9 +30,15 @@ class PacketBonus():
 
     def read(self, main, value):
         self.main = main
+        self.type = value[1]
+        self.x = int(value[2])
+        self.y = int(value[3])
+        self.id = int(value[4])
+        self.id2 = int(value[5])
         return self
 
     def handle(self):
         if self.type == "bonus1":
-            self.main.sender.publishall(PacketBonus().init(self.main, self.type, 0, 0, self.id, self.id2))
+            for a in self.main.game.clientingame:
+                self.main.sender.publish(self.main.getClient(a), PacketBonus().init(self.main, self.type, 0, 0, self.id, self.id2))
         return self

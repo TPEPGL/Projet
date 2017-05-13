@@ -33,7 +33,7 @@ class PacketBonus():
         return self
     # -> 2#Salut toi
     def write(self):
-        return self.main.protocolmap.getProtocol(self) + "#" + self.type + "#" + str(self.x) + "#" + str(self.y) + "#" + str(self.id) + "#" + str(self.id2)
+        return self.main.protocolmap.getProtocol(self) + "#" + self.type + "#" + str(self.x) + "#" + str(self.y) + "#" + self.id + "#" + str(self.id2)
     
     
     #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau d�couper par le s�parateur # recu dans Receiver
@@ -49,7 +49,8 @@ class PacketBonus():
         
     #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le message dans le tchat
     def handle(self):
-        
+
+        print(self.type + "#" + str(self.x) + "#" + str(self.y) + "#" + str(self.id) + "#" + str(self.id2))
         if self.type == "pose":
             self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["bonus"])
             self.main.fenetregame.listpiege.append(self.main.fenetregame.listitem[self.x][self.y])

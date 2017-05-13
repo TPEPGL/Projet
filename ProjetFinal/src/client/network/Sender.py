@@ -23,3 +23,8 @@ class Sender(object):
         except socket.error:
             print("Server Closed")
             self.main.fenetre.destroy()
+        except ConnectionResetError:
+            print("Server Closed")
+            self.main.fenetre.destroy()
+
+

@@ -30,6 +30,13 @@ class TaskBonus(threading.Thread):
         self.zone14 = None
         self.text11 = None
         self.bonus1y = 0
+        self.bonus2 = -1
+        self.zone21 = None
+        self.zone22 = None
+        self.zone23 = None
+        self.zone24 = None
+        self.text21 = None
+        self.bonus2y = 0
         self.x = 0
         self.size = 30.0
         self.PacketBonus = PacketBonus
@@ -62,6 +69,18 @@ class TaskBonus(threading.Thread):
 
                 self.zone11 = self.main.fenetregame.canvas.create_rectangle(self.x-self.size*3, self.bonus1y*22-14, self.x+3*(z*2-self.size), self.bonus1y*22-3, fill = "#64FF37", width=0)
                 self.zone12 = self.main.fenetregame.canvas.create_rectangle(self.x+3*(z*2-self.size), self.bonus1y*22-14, self.x+3*(self.size*2-self.size), self.bonus1y*22-3, fill = "#FF4650", width=0)
+
+
+            if self.bonus2 > -1:
+                self.bonus2 += 1
+                if self.zone21 is not None:
+                    self.main.fenetregame.canvas.delete(self.zone21)
+                if self.zone22 is not None:
+                    self.main.fenetregame.canvas.delete(self.zone22)
+                z = int((float(self.bonus2/30.0))*self.size)
+
+                self.zone21 = self.main.fenetregame.canvas.create_rectangle(self.x-self.size*3, self.bonus2y*22-14, self.x+3*(z*2-self.size), self.bonus2y*22-3, fill = "#64FF37", width=0)
+                self.zone22 = self.main.fenetregame.canvas.create_rectangle(self.x+3*(z*2-self.size), self.bonus2y*22-14, self.x+3*(self.size*2-self.size), self.bonus2y*22-3, fill = "#FF4650", width=0)
 
 
 
@@ -97,25 +116,47 @@ class TaskBonus(threading.Thread):
                     self.main.fenetregame.canvas.delete(self.text11)
                 self.bonus1 = -1
                 self.bonus1y = 0
-                self.main.sender.publish(self.PacketBonus().init(self.main, "bonus1", 0, 0, int(self.main.id), 0))
+                self.main.sender.publish(self.PacketBonus().init(self.main, "bonus1", 0, 0, str(self.main.id), 0))
+
+            if self.bonus2 > 10*3:
+                if self.zone23 is not None:
+                    self.main.fenetregame.canvas.delete(self.zone23)
+                if self.zone24 is not None:
+                    self.main.fenetregame.canvas.delete(self.zone24)
+                if self.zone21 is not None:
+                    self.main.fenetregame.canvas.delete(self.zone21)
+                if self.zone22 is not None:
+                    self.main.fenetregame.canvas.delete(self.zone22)
+                if self.text21 is not None:
+                    self.main.fenetregame.canvas.delete(self.text21)
+                self.bonus2 = -1
+                self.bonus2y = 0
             time.sleep(0.1)
     def startbonus0(self):
         if self.bonus0 == -1:
             self.bonus0y = self.getplace()
-            self.text01 = self.main.writeText(self.x-self.size*3-50, self.bonus0y*22-11, "Vision", self.main.fenetregame.canvas, False, 15, '#D9D526')
+            self.text01 = self.main.writeText(self.x-self.size*3-50, self.bonus0y*22-11, "Radar", self.main.fenetregame.canvas, False, 15, '#D9D526')
             self.zone03 = self.main.writeText(self.x-self.size*3, self.bonus0y*22-11, "[", self.main.fenetregame.canvas, False, 15, '#D9D526')
             self.zone04 = self.main.writeText(self.x+self.size*3, self.bonus0y*22-11, "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
             for a in self.main.fenetregame.other:
-                self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[a][3])
+                if a not in self.main.fenetregame.invilist:
+                    self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[a][3])
         self.bonus0 = 0
 
     def startbonus1(self):
         if self.bonus1 == -1:
             self.bonus1y = self.getplace()
-            self.text11 = self.main.writeText(self.x-self.size*3-70, self.bonus1y*22-11, "Invisibilité", self.main.fenetregame.canvas, False, 15, '#D9D526')
+            self.text11 = self.main.writeText(self.x-self.size*3-140, self.bonus1y*22-11, "Invisibilité temporaire", self.main.fenetregame.canvas, False, 15, '#D9D526')
             self.zone13 = self.main.writeText(self.x-self.size*3, self.bonus1y*22-11, "[", self.main.fenetregame.canvas, False, 15, '#D9D526')
             self.zone14 = self.main.writeText(self.x+self.size*3, self.bonus1y*22-11, "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
         self.bonus1 = 0
+    def startbonus2(self):
+        if self.bonus2 == -1:
+            self.bonus2y = self.getplace()
+            self.text21 = self.main.writeText(self.x-self.size*3-140, self.bonus2y*22-11, "Passe muraille", self.main.fenetregame.canvas, False, 15, '#D9D526')
+            self.zone23 = self.main.writeText(self.x-self.size*3, self.bonus2y*22-11, "[", self.main.fenetregame.canvas, False, 15, '#D9D526')
+            self.zone24 = self.main.writeText(self.x+self.size*3, self.bonus2y*22-11, "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
+        self.bonus2 = 0
     def getplace(self):
         a = 0
         b = []
@@ -123,6 +164,8 @@ class TaskBonus(threading.Thread):
             b.append(self.bonus0y)
         if self.bonus1y > 0:
             b.append(self.bonus1y)
+        if self.bonus2y > 0:
+            b.append(self.bonus2y)
         d = 0
         for c in range(2):
             if c+1 not in b:

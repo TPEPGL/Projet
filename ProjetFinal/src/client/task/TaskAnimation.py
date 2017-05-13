@@ -21,7 +21,6 @@ class TaskAnimation(threading.Thread):
         #~ Fonction run de la thread
         def run(self):
             while(self.main.running):
-                time.sleep(0.1)
                 if (self.x == 1280):
                     self.a = False
                 if (self.x == -100):
@@ -49,3 +48,5 @@ class TaskAnimation(threading.Thread):
                 else:
                     self.main.listforfenetre["canvasgame"].move(self.main.perso2,0,-10)
                     self.y -= 10			
+
+                time.sleep(0.1)

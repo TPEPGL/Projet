@@ -33,7 +33,7 @@ class PacketMove():
         print(str(self.x))
         print(str(self.y))
         print(str(int(int(self.x)/22))+"#"+str(int(int(self.y)/22)))
-        if (str(int(int(self.x)/22))+"#"+str(int(int(self.y)/22)) in self.main.game.bonus):
+        if str(int(int(self.x)/22))+ "#"+str(int(int(self.y)/22)) in self.main.game.bonus:
             self.main.game.bonus.remove(str(int(int(self.x)/22))+"#"+str(int(int(self.y)/22)))
             for a in self.main.game.clientingame:
                 self.main.sender.publish(self.main.getClient(a), PacketMove().init(self.main, self.id, self.x, self.y))

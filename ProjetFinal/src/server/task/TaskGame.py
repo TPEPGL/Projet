@@ -18,7 +18,7 @@ class TaskGame(threading.Thread):
         #~ Fonction run de la thread
         def run(self):
             time.sleep(10)
-            while(self.main.game.isrunning):
+            while self.main.game.isrunning:
                 
                 find = True
                 y = 0
@@ -26,7 +26,7 @@ class TaskGame(threading.Thread):
                 while find:
                     y = random.randint(0,len(self.main.game.map[0])-1)
                     x = random.randint(0,len(self.main.game.map)-1)
-                    if (self.main.game.map[x][y] == "0"):
+                    if self.main.game.map[x][y] == "0":
                         find = False
                 self.main.game.bonus.append(str(x)+"#"+str(y))
                 for a in self.main.game.clientingame:

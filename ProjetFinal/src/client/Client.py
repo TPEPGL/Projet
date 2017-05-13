@@ -147,6 +147,10 @@ class Main:
                     self.image["fond"] = PhotoImage(file = self.dir+'\\image\\tiled-brick.png')
                     self.image["fondgame"] = PhotoImage(file = self.dir+'\\image\\fondgame.png')
                     self.image["bonus"] = PhotoImage(file = self.dir+'\\image\\bonus.png')
+                    self.image["aide"] = PhotoImage(file = self.dir+'\\image\\aide.png')
+                    self.image["aide2"] = PhotoImage(file = self.dir+'\\image\\aide2.png')
+                    self.image["parazqsd"] = PhotoImage(file = self.dir+'\\image\\parazqsd.png')
+                    self.image["parafleche"] = PhotoImage(file = self.dir+'\\image\\parafleche.png')
                     
                     self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fond"])
                     self.perso = self.listforfenetre["canvasgame"].create_image(-100,100,image=self.image["PersoMenu"])
@@ -187,21 +191,51 @@ class Main:
                 
     #Appellé quand on clique sur l'écran avec la souris
     def callback(self, event):
-        
+        print(str(event.x) + " "+str(event.y))
         if (self.menu == "principale"):
             if (event.x > 470 and event.x < 735 and event.y > 390 and event.y < 450):
                 if (askokcancel("Quitter ?", "Etes vous sur de quitter ?")):
                     self.fenetre.destroy()
+            if (event.x >= 645 and event.x <= 1060 and event.y >= 247 and event.y <=300):
+                self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["aide"])
+                self.menu="aide1"
             if (event.x > 380 and event.x < 806 and event.y > 97 and event.y < 167):
                 self.sender.publish(PacketInfoGame().init(self))
+            if (event.x >= 120 and event.x <= 543 and event.y >= 252 and event.y <= 303):
+                if (self.touchepref["avancer"] == "Z"):
+                    self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["parazqsd"])
+                else:
+                    self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["parafleche"])
+                self.menu="para"
+        elif (self.menu == "para"):
+            if (event.x >= 466 and event.x <= 749 and event.y >= 111 and event.y <= 224):
+                self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["parafleche"])
+                self.touchepref = {"avancer" : "UP", "piege" : "RETURN", "droite" : "RIGHT", "gauche" : "LEFT", "reculer" : "DOWN"}
+            elif (event.x >= 469 and event.x <= 749 and event.y >= 274 and event.y <= 387):
+                self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["parazqsd"])
+                self.touchepref = {"avancer" : "Z", "piege" : "RETURN", "droite" : "D", "gauche" : "Q", "reculer" : "S"}
+            elif (event.x >= 676 and event.x <= 884 and event.y >= 396 and event.y <= 452):
+                self.menu="principale"
+                self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fondprincipale"])
         elif (self.menu == "file"):
             if (event.x > 380 and event.x < 800 and event.y > 387 and event.y < 445 ):
                 self.menu="principale"
                 self.sender.publish(PacketLeaveQueue().init(self))
                 self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fondprincipale"])
                 self.listforfenetre["canvasgame"].create_image(1182,484,image=self.image["tchatlogo"])
-                
-                
+        elif (self.menu == "aide1" or self.menu == "aide2"):
+            if (event.x > 449 and event.x <= 791 and event.y >= 422 and event.y <= 464):
+                self.menu = "principale"
+                self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fondprincipale"])
+        if (self.menu == "aide1"):
+            if (event.x > 792 and event.x <= 886 and event.y >= 406 and event.y <= 456):
+                self.menu = "aide2"
+                self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["aide2"])
+        elif (self.menu == "aide2"):
+            if (event.x > 327 and event.x <= 448 and event.y >= 403 and event.y <= 461):
+                self.menu = "aide1"
+                self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["aide"])
+            
                 
         if (event.x > 1168 and event.y > 470):
             if (self.listforfenetre["sizemini"] == False):
@@ -212,7 +246,6 @@ class Main:
                 self.fenetre.maxsize(1200, 690)
                 self.fenetre.minsize(1200, 690)
                 self.listforfenetre["sizemini"] = False
-       
     def writeText(self, x, y, text2, canvas, fond, size, color):
         idtext = None
         if (fond):

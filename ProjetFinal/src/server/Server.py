@@ -68,10 +68,12 @@ class Main:
         self.running = False
     
     def getClient(self, value):
-        for client in self.connectclient:
-            if client.id == value:
-                return client
-        return None
+        try:
+            for client in self.connectclient:
+                if client.id == value:
+                    return client
+        except:
+            return None
     
     def getClient2(self, value):
         for client in self.connectclient:
