@@ -64,16 +64,15 @@ class PacketBonus():
                 if str(self.id) == self.main.id:
                     if self.id2 == 0:
                         self.main.taskbonus.startbonus0()
-                    if self.id2 == 1:
+                    elif self.id2 == 1:
                         self.main.taskbonus.startbonus1()
+                    elif self.id2 == 2:
+                        self.main.taskbonus.startbonus2()
                 elif self.id2 == 1:
-                    print("dd")
                     if self.id not in self.main.fenetregame.invilist:
-                        print("ddd")
                         self.main.fenetregame.invilist.append(self.id)
                         self.main.fenetregame.canvas.tag_lower(self.main.fenetregame.other[self.id][3])
         elif self.type == "bonus1" and str(self.id) != self.main.id:
-            print("dd2")
             if self.id in self.main.fenetregame.invilist:
                 self.main.fenetregame.invilist.remove(self.id)
             if self.id in self.main.fenetregame.findlist:

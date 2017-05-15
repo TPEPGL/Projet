@@ -29,15 +29,15 @@ class Receiver(threading.Thread):
         
         #~ Fonction run de la thread
         def run(self):
-            #Boucle infini tant que le programme est lancé
+            #Boucle infini tant que le programme est lancï¿½
             while(self.main.running):
                 try:
                     msg_recu = self.main.connexion_avec_serveur.recv(2048)
-                    #Quand le client recoit un méssage du serveur, le programme continue
+                    #Quand le client recoit un mï¿½ssage du serveur, le programme continue
                     if (msg_recu.decode() != ""):
-                        #On décode la méssage : byte -> String
+                        #On dï¿½code la mï¿½ssage : byte -> String
                         msg_recu = self.main.decode(msg_recu.decode())
-                        #On découpe le méssage dans une table avec comme séparateur le #
+                        #On dï¿½coupe le mï¿½ssage dans une table avec comme sï¿½parateur le #
                         # Par exemple "Salut#Coucou#Oui" -> [Salut, Coucou, Oui
                         for a in msg_recu.split("_-_"):
                             if (a != None and a != ''):
@@ -47,7 +47,7 @@ class Receiver(threading.Thread):
                                 else:
                                     data.append(a)
                                 globals()[self.main.protocolmap.getClassName(data[0])]().read(self.main, data).handle()
-                           #globals()[self.main.protocolmap.getClassName(data[0])]() -> Permet avec la première information, le protocol de générer une Class du packet correspondant au protocol
+                           #globals()[self.main.protocolmap.getClassName(data[0])]() -> Permet avec la premiï¿½re information, le protocol de gï¿½nï¿½rer une Class du packet correspondant au protocol
                 except ConnectionResetError:
                     print("Server Closed")
                     self.main.fenetre.destroy()

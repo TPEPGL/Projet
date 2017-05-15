@@ -51,7 +51,10 @@ class PacketMove():
             self.main.fenetregame.posx = self.x
             self.main.fenetregame.posy = self.y
             map = []
-            map.append(self.main.fenetregame.listitem[int(self.x / 22)][int(self.y / 22)])
+            if (self.main.game.map[int((self.x) / 22)][int(self.y / 22)] == 0):
+                map.append(self.main.fenetregame.listitem[int(self.x / 22)][int(self.y / 22)])
+                self.main.fenetregame.bonus2x = self.x
+                self.main.fenetregame.bonus2y = self.y
 
             if (self.main.game.map[int((self.x + 22) / 22)][int(self.y / 22)] == 0):
                 map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int(self.y / 22)])

@@ -15,6 +15,7 @@ from network.ProtocolMap import ProtocolMap
 from network.Receiver import Receiver
 from network.Sender import Sender
 from network.packet.PacketChat import PacketChat
+from network.packet.PacketMove import PacketMove
 from network.packet.PacketConnect import PacketConnect
 from network.packet.PacketDisconnect import PacketDisconnect
 from network.packet.PacketInfoGame import PacketInfoGame
@@ -290,7 +291,7 @@ class Main:
         self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fondingame"])
         self.taskgame2 = TaskGame2(5, "taskgame2", self, PacketWin)
         self.taskgame2.start()
-        self.taskbonus = TaskBonus(6, "taskbonus", self, PacketBonus)
+        self.taskbonus = TaskBonus(6, "taskbonus", self, PacketBonus, PacketMove)
         self.taskbonus.start()
 
     #Pemet d'encoder les caractères spéciaux car le serveur est en Python 2.7

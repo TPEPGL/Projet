@@ -11,7 +11,7 @@ from tkinter import *
 
 class TaskBonus(threading.Thread):
     # ~ Initialisation
-    def __init__(self, threadID, name, main, PacketBonus):
+    def __init__(self, threadID, name, main, PacketBonus, PacketMove):
         threading.Thread.__init__(self)
         self.main = main
         self.threadID = threadID
@@ -40,10 +40,11 @@ class TaskBonus(threading.Thread):
         self.x = 0
         self.size = 30.0
         self.PacketBonus = PacketBonus
+        self.PacketMove = PacketMove
 
 # ~ Fonction run de la thread
     def run(self):
-        time.sleep(5)
+        time.sleep(2)
         self.x = len(self.main.game.map[0])*20
         while self.main.running and self.main.ingame:
             print(self.main.fenetregame.invilist)
@@ -131,6 +132,8 @@ class TaskBonus(threading.Thread):
                     self.main.fenetregame.canvas.delete(self.text21)
                 self.bonus2 = -1
                 self.bonus2y = 0
+                if (self.main.game.map[int((self.main.fenetregame.posx) / 22)][int(self.main.fenetregame.posy / 22)] != 0):
+                    self.main.sender.publish(self.PacketMove().init(self.main, self.main.fenetregame.bonus2x, self.main.fenetregame.bonus2y))
             time.sleep(0.1)
     def startbonus0(self):
         if self.bonus0 == -1:
