@@ -29,6 +29,7 @@ class TaskGame(threading.Thread):
                     try:
                         if self.main.touchepref["piege"] in self.main.fenetregame.touche:
                             print(str(int((posx)/22))+" "+str(int((posy)/22)))
+                            self.main.fenetregame.canvas.itemconfig(self.main.game.map[int((posx) / 22)][int(posy / 22)], image=None)
 
                         if self.main.touchepref["avancer"] in self.main.fenetregame.touche:
                             if self.main.game.map[int((posx-21)/22)][int((posy)/22)] == 0 and self.main.game.map[int((posx-21)/22)][int((posy-11)/22)] == 0 or self.main.taskbonus.bonus2 != -1 and self.main.game.map[int((posx-21)/22)][int((posy)/22)] != 2 and self.main.game.map[int((posx-21)/22)][int((posy-11)/22)] != 2:
