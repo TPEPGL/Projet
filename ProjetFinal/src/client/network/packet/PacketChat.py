@@ -8,7 +8,7 @@ class PacketChat():
     '''
     classdocs
     '''
-    #Initialisation de la class avec les variables par défault
+    #Initialisation de la class avec les variables par dï¿½fault
     def __init__(self):
         self.time = 0
         self.main = None
@@ -20,24 +20,27 @@ class PacketChat():
         self.msg = msg
         return self
         
-    #Fonction utiliser pour ENVOYER : Permet de transformer les informations de la class en une chaine de caractère :
+    #Fonction utiliser pour ENVOYER : Permet de transformer les informations de la class en une chaine de caractï¿½re :
     #Exemple : 
     #Protocol de la class = 2
-    #Message à l'envoyer = "Salut toi"
+    #Message ï¿½ l'envoyer = "Salut toi"
     
     # -> 2#Salut toi
     def write(self):
         return (self.main.protocolmap.getProtocol(self)+"#"+self.msg)
     
     
-    #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau découper par le séparateur # recu dans Receiver
+    #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau dï¿½couper par le sï¿½parateur # recu dans Receiver
     def read(self, main, value):
         self.msg = value[1]
         self.main = main
         return self
         
-    #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le méssage dans le tchat
+    #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le mï¿½ssage dans le tchat
     def handle(self):
-        self.main.sendMessage(self.msg)
-        #Permet de marquer dans le tchat le méssage que l'on a recu
+        try:
+            self.main.sendMessage(self.msg)
+        except:
+            pass
+        #Permet de marquer dans le tchat le mï¿½ssage que l'on a recu
         return self

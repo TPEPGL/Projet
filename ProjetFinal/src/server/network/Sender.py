@@ -26,7 +26,10 @@ class Sender(object):
             try:
                 client.client.send((packet.write()+"_-_").encode())
             except socket.error:
-                client.client.close()
+                try:
+                    client.client.close()
+                except NoneType:
+                    pass
                 print("Un utilisateur s'est disconnecte : "+client.pseudo+" ("+str(client.id)+")")
                 self.main.connectclient.remove(client)
                 t = Timer(1.0, lambda : self.main.sendMessageTchat("Un utilisateur s'est deconnecte : "+client.pseudo))

@@ -77,7 +77,7 @@ class Main:
         self.game = None
         self.taskanim = None
         self.perso = None
-        self.touchepref = {"avancer" : "Z", "piege" : "space", "droite" : "D", "gauche" : "Q", "reculer" : "S"}
+        self.touchepref = {"avancer" : "Z", "piege" : "SPACE", "droite" : "D", "gauche" : "Q", "reculer" : "S"}
         self.image = {}
         self.taskpiege = None
         self.taskgame2 = None
@@ -213,10 +213,10 @@ class Main:
         elif (self.menu == "para"):
             if (event.x >= 466 and event.x <= 749 and event.y >= 111 and event.y <= 224):
                 self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["parafleche"])
-                self.touchepref = {"avancer" : "UP", "piege" : "space", "droite" : "RIGHT", "gauche" : "LEFT", "reculer" : "DOWN"}
+                self.touchepref = {"avancer" : "UP", "piege" : "SPACE", "droite" : "RIGHT", "gauche" : "LEFT", "reculer" : "DOWN"}
             elif (event.x >= 469 and event.x <= 749 and event.y >= 274 and event.y <= 387):
                 self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["parazqsd"])
-                self.touchepref = {"avancer" : "Z", "piege" : "space", "droite" : "D", "gauche" : "Q", "reculer" : "S"}
+                self.touchepref = {"avancer" : "Z", "piege" : "SPACE", "droite" : "D", "gauche" : "Q", "reculer" : "S"}
             elif (event.x >= 676 and event.x <= 884 and event.y >= 396 and event.y <= 452):
                 self.menu="principale"
                 self.listforfenetre["canvasgame"].create_image(600,250,image=self.image["fondprincipale"])

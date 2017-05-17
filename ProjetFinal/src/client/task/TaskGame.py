@@ -28,8 +28,7 @@ class TaskGame(threading.Thread):
                     posx = self.main.fenetregame.posx
                     try:
                         if self.main.touchepref["piege"] in self.main.fenetregame.touche:
-                            print(str(int((posx)/22))+" "+str(int((posy)/22)))
-                            self.main.fenetregame.canvas.itemconfig(self.main.game.map[int((posx) / 22)][int(posy / 22)], image=None)
+                            self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[int((posx) / 22)][int(posy / 22)], image=self.main.image["bonus"])
 
                         if self.main.touchepref["avancer"] in self.main.fenetregame.touche:
                             if self.main.game.map[int((posx-21)/22)][int((posy)/22)] == 0 and self.main.game.map[int((posx-21)/22)][int((posy-11)/22)] == 0 or self.main.taskbonus.bonus2 != -1 and self.main.game.map[int((posx-21)/22)][int((posy)/22)] != 2 and self.main.game.map[int((posx-21)/22)][int((posy-11)/22)] != 2:
@@ -43,7 +42,8 @@ class TaskGame(threading.Thread):
                         if self.main.touchepref["gauche"] in self.main.fenetregame.touche:
                             if self.main.game.map[int((posx)/22)][int((posy-21)/22)] == 0 and self.main.game.map[int((posx-11)/22)][int((posy-21)/22)] == 0 or self.main.taskbonus.bonus2 != -1 and self.main.game.map[int((posx)/22)][int((posy-21)/22)] != 2 and self.main.game.map[int((posx-11)/22)][int((posy-21)/22)] != 2:
                                 posy -= 11
-                        self.main.sender.publish(self.PacketMove().init(self.main, posx, posy))
+                        if self.main.fenetregame.posy != posy or self.main.fenetregame.posx != posx:
+                            self.main.sender.publish(self.PacketMove().init(self.main, posx, posy))
                     except IndexError:
-                        pass
+                        print("error")
                 time.sleep(0.05)
