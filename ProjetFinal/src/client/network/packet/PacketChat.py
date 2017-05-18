@@ -27,7 +27,7 @@ class PacketChat():
     
     # -> 2#Salut toi
     def write(self):
-        return (self.main.protocolmap.getProtocol(self)+"#"+self.msg)
+        return self.main.protocolmap.getProtocol(self) + "#" + self.msg
     
     
     #Fonction utiliser pour RECEVOIR: Permet d'inition les variables avec le tableau d�couper par le s�parateur # recu dans Receiver

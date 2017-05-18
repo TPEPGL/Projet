@@ -20,8 +20,8 @@ class TaskUpdateConnect(threading.Thread):
         
         #~ Fonction run de la thread
         def run(self):
-            #Boucle infini tant que le programme est lancé
-            while(self.main.running):
+            #Boucle infini tant que le programme est lancï¿½
+            while self.main.running:
                 #Toute les 1 secondes, on envoie le packet Update au serveur
                 self.main.sender.publish(self.PacketUpdate().init(self.main))
                 time.sleep(1)

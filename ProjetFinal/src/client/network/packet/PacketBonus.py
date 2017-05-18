@@ -53,10 +53,12 @@ class PacketBonus():
         print(self.type + "#" + str(self.x) + "#" + str(self.y) + "#" + str(self.id) + "#" + str(self.id2))
         if self.type == "pose":
             self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["bonus"])
-            self.main.fenetregame.listpiege.append(self.main.fenetregame.listitem[self.x][self.y])
+            id = self.main.fenetregame.listitem[self.x][self.y]
+            if id not in self.main.fenetregame.listbonus:
+                self.main.fenetregame.listbonus.append(self.main.fenetregame.listitem[self.x][self.y])
         elif self.type == "remove":
-            if self.main.fenetregame.listitem[self.x][self.y] in self.main.fenetregame.listpiege:
-                self.main.fenetregame.listpiege.remove(self.main.fenetregame.listitem[self.x][self.y])
+            if self.main.fenetregame.listitem[self.x][self.y] in self.main.fenetregame.listbonus:
+                self.main.fenetregame.listbonus.remove(self.main.fenetregame.listitem[self.x][self.y])
                 if self.main.fenetregame.listitem[self.x][self.y] in self.main.fenetregame.maptemp:
                     self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["sol"])
                 else:

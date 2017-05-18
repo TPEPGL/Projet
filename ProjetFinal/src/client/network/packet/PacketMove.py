@@ -51,12 +51,12 @@ class PacketMove():
             self.main.fenetregame.posx = self.x
             self.main.fenetregame.posy = self.y
             map = []
-            if (self.main.game.map[int((self.x) / 22)][int(self.y / 22)] == 0):
+            if self.main.game.map[int((self.x) / 22)][int(self.y / 22)] == 0:
                 map.append(self.main.fenetregame.listitem[int(self.x / 22)][int(self.y / 22)])
                 self.main.fenetregame.bonus2x = self.x
                 self.main.fenetregame.bonus2y = self.y
 
-            if (self.main.game.map[int((self.x + 22) / 22)][int(self.y / 22)] == 0):
+            if self.main.game.map[int((self.x + 22) / 22)][int(self.y / 22)] == 0:
                 map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int(self.y / 22)])
                 if (self.main.game.map[int((self.x + 22) / 22)][int((self.y + 22) / 22)] == 0 and
                             self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
@@ -64,9 +64,9 @@ class PacketMove():
                 if (self.main.game.map[int((self.x + 22) / 22)][int((self.y - 22) / 22)] == 0 and
                             self.main.game.map[int(self.x / 22)][int((self.y - 22) / 22)] == 0):
                     map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int((self.y - 22) / 22)])
-                if (self.main.game.map[int((self.x + 44) / 22)][int(self.y / 22)] == 0):
+                if self.main.game.map[int((self.x + 44) / 22)][int(self.y / 22)] == 0:
                     map.append(self.main.fenetregame.listitem[int((self.x + 44) / 22)][int((self.y) / 22)])
-                    if (self.main.game.map[int((self.x + 66) / 22)][int(self.y / 22)] == 0):
+                    if self.main.game.map[int((self.x + 66) / 22)][int(self.y / 22)] == 0:
                         map.append(self.main.fenetregame.listitem[int((self.x + 66) / 22)][int((self.y) / 22)])
                     if (self.main.game.map[int((self.x + 22) / 22)][int((self.y - 22) / 22)] == 0 and
                                 self.main.game.map[int((self.x + 44) / 22)][int((self.y - 22) / 22)] == 0 and
@@ -77,7 +77,7 @@ class PacketMove():
                                 self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
                         map.append(self.main.fenetregame.listitem[int((self.x + 44) / 22)][int((self.y + 22) / 22)])
 
-            if (self.main.game.map[int((self.x - 22) / 22)][int(self.y / 22)] == 0):
+            if self.main.game.map[int((self.x - 22) / 22)][int(self.y / 22)] == 0:
                 map.append(self.main.fenetregame.listitem[int((self.x - 22) / 22)][int(self.y / 22)])
                 if (self.main.game.map[int((self.x - 22) / 22)][int((self.y + 22) / 22)] == 0 and
                             self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
@@ -85,9 +85,9 @@ class PacketMove():
                 if (self.main.game.map[int((self.x - 22) / 22)][int((self.y - 22) / 22)] == 0 and
                             self.main.game.map[int(self.x / 22)][int((self.y - 22) / 22)] == 0):
                     map.append(self.main.fenetregame.listitem[int((self.x - 22) / 22)][int((self.y - 22) / 22)])
-                if (self.main.game.map[int((self.x - 44) / 22)][int(self.y / 22)] == 0):
+                if self.main.game.map[int((self.x - 44) / 22)][int(self.y / 22)] == 0:
                     map.append(self.main.fenetregame.listitem[int((self.x - 44) / 22)][int(self.y / 22)])
-                    if (self.main.game.map[int((self.x - 66) / 22)][int(self.y / 22)] == 0):
+                    if self.main.game.map[int((self.x - 66) / 22)][int(self.y / 22)] == 0:
                         map.append(self.main.fenetregame.listitem[int((self.x - 66) / 22)][int(self.y / 22)])
                     if (self.main.game.map[int((self.x - 22) / 22)][int((self.y - 22) / 22)] == 0 and
                                 self.main.game.map[int((self.x - 44) / 22)][int((self.y - 22) / 22)] == 0 and
@@ -98,11 +98,11 @@ class PacketMove():
                                 self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
                         map.append(self.main.fenetregame.listitem[int((self.x - 44) / 22)][int((self.y + 22) / 22)])
 
-            if (self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0):
+            if self.main.game.map[int(self.x / 22)][int((self.y + 22) / 22)] == 0:
                 map.append(self.main.fenetregame.listitem[int(self.x / 22)][int((self.y + 22) / 22)])
-                if (self.main.game.map[int(self.x / 22)][int((self.y + 44) / 22)] == 0):
+                if self.main.game.map[int(self.x / 22)][int((self.y + 44) / 22)] == 0:
                     map.append(self.main.fenetregame.listitem[int(self.x / 22)][int((self.y + 44) / 22)])
-                    if (self.main.game.map[int(self.x / 22)][int((self.y + 66) / 22)] == 0):
+                    if self.main.game.map[int(self.x / 22)][int((self.y + 66) / 22)] == 0:
                         map.append(self.main.fenetregame.listitem[int(self.x / 22)][int((self.y + 66) / 22)])
                     if (self.main.game.map[int((self.x - 22) / 22)][int((self.y + 22) / 22)] == 0 and
                                 self.main.game.map[int((self.x - 22) / 22)][int((self.y + 44) / 22)] == 0 and
@@ -113,11 +113,11 @@ class PacketMove():
                                 self.main.game.map[int((self.x + 22) / 22)][int((self.y) / 22)] == 0):
                         map.append(self.main.fenetregame.listitem[int((self.x + 22) / 22)][int((self.y + 44) / 22)])
 
-            if (self.main.game.map[int(self.x / 22)][int((self.y - 22) / 22)] == 0):
+            if self.main.game.map[int(self.x / 22)][int((self.y - 22) / 22)] == 0:
                 map.append(self.main.fenetregame.listitem[int(self.x / 22)][int((self.y - 22) / 22)])
-                if (self.main.game.map[int(self.x / 22)][int((self.y - 44) / 22)] == 0):
+                if self.main.game.map[int(self.x / 22)][int((self.y - 44) / 22)] == 0:
                     map.append(self.main.fenetregame.listitem[int(self.x / 22)][int((self.y - 44) / 22)])
-                    if (self.main.game.map[int(self.x / 22)][int((self.y - 66) / 22)] == 0):
+                    if self.main.game.map[int(self.x / 22)][int((self.y - 66) / 22)] == 0:
                         map.append(self.main.fenetregame.listitem[int(self.x / 22)][int((self.y - 66) / 22)])
                     if (self.main.game.map[int((self.x - 22) / 22)][int((self.y - 22) / 22)] == 0 and
                                 self.main.game.map[int((self.x - 22) / 22)][int((self.y - 44) / 22)] == 0 and
@@ -130,10 +130,10 @@ class PacketMove():
 
             for a in self.main.fenetregame.maptemp:
                 if a not in map:
-                    if a not in self.main.fenetregame.listpiege:
+                    if a not in self.main.fenetregame.listbonus and a not in self.main.fenetregame.listpiege:
                         self.main.fenetregame.canvas.itemconfig(a, image=self.main.image["solsombre"])
             for b in map:
-                if b not in self.main.fenetregame.listpiege:
+                if b not in self.main.fenetregame.listbonus and b not in self.main.fenetregame.listpiege:
                     self.main.fenetregame.canvas.itemconfig(b, image=self.main.image["sol"])
             self.main.fenetregame.maptemp = map
             for b in self.main.fenetregame.other:

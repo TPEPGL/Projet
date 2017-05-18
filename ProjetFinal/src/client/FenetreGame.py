@@ -27,13 +27,14 @@ class FenetreGame(Toplevel):
         self.listitem = []
         self.findlist = []
         self.role = 0
+        self.listbonus = []
         self.listpiege = []
         self.invilist = []
         self.bonus2x = 0
         self.bonus2y = 0
 
     def spawnPion(self, x, y, role):
-        if (role == 0):
+        if role == 0:
             self.Pion = self.canvas.create_image(y*22+11,x*22+11,image=self.main.image["Perso2Jeu"])
         else:
             self.Pion = self.canvas.create_image(y*22+11,x*22+11,image=self.main.image["Perso1Jeu"])
@@ -43,14 +44,14 @@ class FenetreGame(Toplevel):
         self.canvas.tag_raise(self.Pion)
     def spawnOtherPion(self, id, x, y, role):
         pion = 0
-        if (role == 0):
+        if role == 0:
             pion = self.canvas.create_image(y*22+11,x*22+11,image=self.main.image["Perso2Jeu"])
         else:
             pion = self.canvas.create_image(y*22+11,x*22+11,image=self.main.image["Perso1Jeu"])
         self.other[id] = [x*22+11, y*22+11, self.main.image["Perso2Jeu"], pion, role]
     def pressTouche(self, event):
-        if (event.keysym.upper() not in self.touche):
+        if event.keysym.upper() not in self.touche:
             self.touche.append(event.keysym.upper())
     def unpressTouche(self, event):
-        if (event.keysym.upper() in self.touche):
+        if event.keysym.upper() in self.touche:
             self.touche.remove(event.keysym.upper())
