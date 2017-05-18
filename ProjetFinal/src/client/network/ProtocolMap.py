@@ -11,7 +11,7 @@ class ProtocolMap(object):
         self.protocolmap = {"0": "PacketUpdate", "1": "PacketTest", "2": "PacketChat", '3': "PacketConnect",
                             "4": "PacketInfoGame", "5": "PacketLeaveQueue", "6": "PacketDisconnect",
                             "7": "PacketStartGame", "8": "PacketSendMap", "9": "PacketMove", "A": "PacketWin",
-                            "B": "PacketBonus"}
+                            "B": "PacketBonus",  "C": "PacketPiege"}
         self.main = main
 
 

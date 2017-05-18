@@ -15,8 +15,6 @@ class FenetreGame(Toplevel):
         self.canvas.bind('<KeyRelease>', self.unpressTouche)
         self.canvas.pack(side=TOP)
         self.touche = []
-        self.main.taskgame = TaskGame(3, "taskgame", self.main, PacketMove)
-        self.main.taskgame.start()
         self.maxsize(10, 10)
         self.minsize(10, 10)
         self.posx = 0

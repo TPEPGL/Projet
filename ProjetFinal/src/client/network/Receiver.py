@@ -15,6 +15,7 @@ from .packet.PacketStartGame import *
 from .packet.PacketTest import *
 from .packet.PacketWin import *
 from .packet.PacketBonus import *
+from .packet.PacketPiege import *
 
 
 class Receiver(threading.Thread):
