@@ -31,6 +31,8 @@ from task.TaskBonus import TaskBonus
 from numpy import append
 from FenetreGame import FenetreGame
 from Game import Game
+import time
+import threading
 
 if __name__ == '__main__':
     pass
@@ -82,27 +84,43 @@ class Main:
         self.taskgame2 = None
         self.taskgame = None
         self.taskbonus = None
-
+        self.fenetrelogin = False
         self.ingame = False
+        self.presskey = False
+        self.tasklogin = None
 
     def enterkey(self, event):
-        if event.keysym == "Return":
-            self.verif()
-
+        if self.presskey:
+            if event.keysym == "Return":
+                self.verif()
+        else:
+            if self.tasklogin.id is not None:
+                self.listforfenetre["canvasgame"].delete(self.tasklogin.id  )
+            self.presskey = True
+            self.listforfenetre["canvasgame"].create_text(300, 335, text='Votre Nom d\'utilisateur :', fill='#FFFFFF', font='Helvetica 15')
+            self.champ = Entry(self.listforfenetre["canvasgame"], bg='ivory3', fg='maroon')
+            self.champ.pack()
+            self.listforfenetre["canvasgame"].create_window(300, 360, window=self.champ)
     def onStart(self):
         # Initialisation Création de la fenetre
         self.fenetre = Tk()
         self.fenetre.title("LabyTrap")
-        self.fenetre.maxsize(203, 53)
-        self.fenetre.minsize(203, 53)
+        self.image["fondjeu"] = PhotoImage(file=self.dir + '\\image\\Lancement.png')
+        self.image["appuyimg"] = PhotoImage(file=self.dir + '\\image\\appuyimg.png')
+
+        self.fenetre.maxsize(600, 400)
+        self.fenetre.minsize(600, 400)
         frame = Frame(self.fenetre, borderwidth=3, relief=GROOVE)
-        Label(frame, text="Votre nom : ").grid(row=0, column=0)
-        self.champ = Entry(frame, bg='ivory3', fg='maroon')
-        self.champ.grid(row=0, column=1)
-        Button(frame, text="Valider", fg='navy', command=self.verif).grid(row=1, column=1)
         self.fenetre.bind_all("<Key>", self.enterkey)
+        self.listforfenetre["canvasgame"] = Canvas(self.fenetre, width=600, height=400)
+        self.listforfenetre["canvasgame"].create_image(300, 200, image=self.image["fondjeu"])
+        self.listforfenetre["canvasgame"].pack()
+        self.tasklogin = TaskAnimLogin(7, "animlogin", self)
+        self.tasklogin.start()
         frame.pack()
+        self.fenetrelogin = True
         self.fenetre.mainloop()
+        self.fenetrelogin = False
         # En attente du remplissable du pseudo
         if self.pseudo != "":
             try:
@@ -186,8 +204,8 @@ class Main:
                     self.listforfenetre["frametchat"].pack()
 
                     # Taille de la fenetre bloqué
-                    self.fenetre.maxsize(1200, 740)
-                    self.fenetre.minsize(1200, 740)
+                    self.fenetre.maxsize(1200, 690)
+                    self.fenetre.minsize(1200, 690)
                     self.fenetre.mainloop()
                     # Si cette boucle s'arrete -> On dit que le programme est off pour arrêter les task qui sont en route
                     self.running = False
@@ -205,7 +223,7 @@ class Main:
         print(str(event.x) + " " + str(event.y))
         if self.menu == "principale":
             if 470 < event.x < 735 and 390 < event.y < 450:
-                if (askokcancel("Quitter ?", "Etes vous sur de quitter ?")):
+                if askokcancel("Quitter ?", "Etes vous sur de quitter ?"):
                     self.fenetre.destroy()
             if 645 <= event.x <= 1060 and 247 <= event.y <= 300:
                 self.listforfenetre["canvasgame"].create_image(600, 250, image=self.image["aide"])
@@ -223,10 +241,10 @@ class Main:
                 self.listforfenetre["canvasgame"].create_image(600, 250, image=self.image["parafleche"])
                 self.touchepref = {"avancer": "UP", "piege": "SPACE", "droite": "RIGHT", "gauche": "LEFT",
                                    "reculer": "DOWN"}
-            elif 469 <= event.x <= 749 and event.y >= 274 and event.y <= 387:
+            elif 469 <= event.x <= 749 and 274 <= event.y <= 387:
                 self.listforfenetre["canvasgame"].create_image(600, 250, image=self.image["parazqsd"])
                 self.touchepref = {"avancer": "Z", "piege": "SPACE", "droite": "D", "gauche": "Q", "reculer": "S"}
-            elif 676 <= event.x <= 884 and event.y >= 396 and event.y <= 452:
+            elif 676 <= event.x <= 884 and 396 <= event.y <= 452:
                 self.menu = "principale"
                 self.listforfenetre["canvasgame"].create_image(600, 250, image=self.image["fondprincipale"])
             elif 443 <= event.x <= 763 and 28 <= event.y <= 93:
@@ -252,7 +270,7 @@ class Main:
                 self.listforfenetre["canvasgame"].create_image(600, 250, image=self.image["aide"])
 
         if event.x > 1168 and event.y > 470:
-            if self.listforfenetre["sizemini"] == False:
+            if not self.listforfenetre["sizemini"]:
                 self.fenetre.maxsize(1200, 500)
                 self.fenetre.minsize(1200, 500)
                 self.listforfenetre["sizemini"] = True
@@ -406,4 +424,22 @@ class Main:
 
 
 # Lance le programme
+
+class TaskAnimLogin(threading.Thread):
+
+    #~ Initialisation
+    def __init__(self, threadID, name, main):
+        threading.Thread.__init__(self)
+        self.main = main
+        self.threadID = threadID
+        self.name = name
+        self.id = 0
+    def run(self):
+        time.sleep(0.1)
+        while self.main.fenetrelogin and self.main.presskey == False:
+            self.id = self.main.listforfenetre["canvasgame"].create_image(300, 350, image=self.main.image["appuyimg"])
+            time.sleep(1)
+            if self.id is not None and self.main.fenetrelogin:
+                self.main.listforfenetre["canvasgame"].delete(self.id)
+            time.sleep(1)
 Main().onStart()
