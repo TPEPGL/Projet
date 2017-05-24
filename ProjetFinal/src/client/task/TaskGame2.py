@@ -36,7 +36,7 @@ class TaskGame2(threading.Thread):
     # ~ Fonction run de la thread
     def run(self):
         time.sleep(1)
-        while self.main.running and self.main.ingame:
+        while self.main.running and self.main.ingame and self.main.fenetregame.canvas is not None:
             if self.piege < 3:
                 self.piegecount += 1
                 if self.zone is not None:

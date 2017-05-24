@@ -44,10 +44,9 @@ class TaskBonus(threading.Thread):
 
 # ~ Fonction run de la thread
     def run(self):
-        time.sleep(2)
+        time.sleep(3)
         self.x = len(self.main.game.map[0])*20
         while self.main.running and self.main.ingame:
-            print(self.main.fenetregame.invilist)
             if self.bonus0 > -1:
                 self.bonus0 += 1
                 if self.zone01 is not None:
@@ -163,6 +162,10 @@ class TaskBonus(threading.Thread):
     def getplace(self):
         a = 0
         b = []
+        if self.main.taskpiege.piege0y > 0:
+            b.append(self.main.taskpiege.piege0y)
+        if self.main.taskpiege.piege1y > 0:
+            b.append(self.main.taskpiege.piege1y)
         if self.bonus0y > 0:
             b.append(self.bonus0y)
         if self.bonus1y > 0:

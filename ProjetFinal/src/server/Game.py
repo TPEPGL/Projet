@@ -16,6 +16,7 @@ class Game():
         self.map = []
         self.task = None
         self.bonus = []
+        self.piege = {}
         
     def stop(self):
         self.clientingame = []

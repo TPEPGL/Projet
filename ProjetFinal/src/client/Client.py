@@ -27,7 +27,9 @@ from network.packet.PacketPiege import PacketPiege as PacketPiege
 from task.TaskUpdateConnect import TaskUpdateConnect
 from task.TaskAnimation import TaskAnimation
 from task.TaskGame2 import TaskGame2
+from task.TaskGame import TaskGame
 from task.TaskBonus import TaskBonus
+from task.TaskPiege import TaskPiege
 from numpy import append
 from FenetreGame import FenetreGame
 from Game import Game
@@ -99,6 +101,8 @@ class Main:
             self.presskey = True
             self.listforfenetre["canvasgame"].create_text(300, 335, text='Votre Nom d\'utilisateur :', fill='#FFFFFF', font='Helvetica 15')
             self.champ = Entry(self.listforfenetre["canvasgame"], bg='ivory3', fg='maroon')
+
+            self.champ.focus_set()
             self.champ.pack()
             self.listforfenetre["canvasgame"].create_window(300, 360, window=self.champ)
     def onStart(self):
@@ -115,7 +119,7 @@ class Main:
         self.listforfenetre["canvasgame"] = Canvas(self.fenetre, width=600, height=400)
         self.listforfenetre["canvasgame"].create_image(300, 200, image=self.image["fondjeu"])
         self.listforfenetre["canvasgame"].pack()
-        self.tasklogin = TaskAnimLogin(7, "animlogin", self)
+        self.tasklogin = TaskAnimLogin(8, "animlogin", self)
         self.tasklogin.start()
         frame.pack()
         self.fenetrelogin = True
@@ -220,7 +224,6 @@ class Main:
                 # Appellé quand on clique sur l'écran avec la souris
 
     def callback(self, event):
-        print(str(event.x) + " " + str(event.y))
         if self.menu == "principale":
             if 470 < event.x < 735 and 390 < event.y < 450:
                 if askokcancel("Quitter ?", "Etes vous sur de quitter ?"):
@@ -327,7 +330,9 @@ class Main:
         self.taskgame2.start()
         self.taskbonus = TaskBonus(6, "taskbonus", self, PacketBonus, PacketMove)
         self.taskbonus.start()
-        self.taskgame = TaskGame(3, "taskgame", self.main, PacketMove,PacketPiege)
+        self.taskpiege = TaskPiege(7, "taskpiege", self)
+        self.taskpiege.start()
+        self.taskgame = TaskGame(3, "taskgame", self, PacketMove, PacketPiege)
         self.taskgame.start()
 
     # Pemet d'encoder les caractères spéciaux car le serveur est en Python 2.7

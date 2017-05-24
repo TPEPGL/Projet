@@ -22,9 +22,15 @@ class Sender(object):
             self.main.connexion_avec_serveur.send((self.main.encode(packet.write())+"_-_").encode())
         except socket.error:
             print("Server Closed")
-            self.main.fenetre.destroy()
+            try:
+                self.main.fenetre.destroy()
+            except:
+                pass
         except ConnectionResetError:
             print("Server Closed")
-            self.main.fenetre.destroy()
+            try:
+                self.main.fenetre.destroy()
+            except:
+                pass
 
 

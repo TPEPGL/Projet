@@ -50,4 +50,7 @@ class TaskGame(threading.Thread):
                             self.main.sender.publish(self.PacketMove().init(self.main, posx, posy))
                     except IndexError:
                         print("error")
-                time.sleep(0.05)
+                if self.main.taskpiege is not None and self.main.taskpiege.piege1 != -1:
+                    time.sleep(0.5)
+                else:
+                    time.sleep(0.05)

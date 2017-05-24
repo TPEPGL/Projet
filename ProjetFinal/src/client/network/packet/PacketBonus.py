@@ -49,8 +49,6 @@ class PacketBonus():
         
     #Fonction utiliser pour RECEVOIR : Va effectuer une action quand on recoit le packet, ici on va marquer le message dans le tchat
     def handle(self):
-
-        print(self.type + "#" + str(self.x) + "#" + str(self.y) + "#" + str(self.id) + "#" + str(self.id2))
         if self.type == "pose":
             self.main.fenetregame.canvas.itemconfig(self.main.fenetregame.listitem[self.x][self.y], image = self.main.image["bonus"])
             id = self.main.fenetregame.listitem[self.x][self.y]

@@ -15,6 +15,7 @@ from .packet.PacketMove import *
 from .packet.PacketPosePiege import *
 from .packet.PacketWin import *
 from .packet.PacketBonus import *
+from .packet.PacketPiege import *
 
 class Receiver(threading.Thread):
 
@@ -45,7 +46,7 @@ class Receiver(threading.Thread):
                             clients_a_lire2.append(client2)
                     for client in clients_a_lire2:
                         msg_recu = ""
-                        try:
+                        if True:
                             msg_recu = client.client.recv(2048)
                             msg_recu = msg_recu.decode()
                             for a in msg_recu.split("_-_"):
@@ -56,5 +57,3 @@ class Receiver(threading.Thread):
                                     else:
                                         data.append(a)
                                     (globals()[self.main.protocolmap.getClassName(data[0])]()).read(self.main, data).handle()
-                        except:
-                            pass
