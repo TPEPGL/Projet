@@ -163,4 +163,7 @@ class PacketMove():
                     self.main.fenetregame.canvas.tag_lower(info[3])
                 if self.id in self.main.fenetregame.findlist:
                     self.main.fenetregame.findlist.remove(self.id)
+        if self.main.taskpiege.id0 is not None:
+            self.main.fenetregame.canvas.tag_raise(self.main.taskpiege.id0)
+
         return self

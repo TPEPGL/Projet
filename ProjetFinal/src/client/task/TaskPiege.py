@@ -7,7 +7,7 @@ Created on 5 févr. 2017
 import threading
 import time
 from tkinter import *
-
+import random
 
 class TaskPiege(threading.Thread):
     # ~ Initialisation
@@ -32,6 +32,7 @@ class TaskPiege(threading.Thread):
         self.piege1y = 0
         self.x = 0
         self.size = 30.0
+        self.id0 = 0
 
 # ~ Fonction run de la thread
     def run(self):
@@ -76,6 +77,9 @@ class TaskPiege(threading.Thread):
                     self.main.fenetregame.canvas.delete(self.text01)
                 self.piege0 = -1
                 self.piege0y = 0
+                if self.id0 is not None:
+                    self.main.fenetregame.canvas.delete(self.id0)
+
 
             if self.piege1 > 10*5:
                 if self.zone13 is not None:
@@ -98,9 +102,11 @@ class TaskPiege(threading.Thread):
             self.text01 = self.main.writeText(self.x-self.size*3-100, self.piege0y*22-11, "Obstruction visuelle", self.main.fenetregame.canvas, False, 15, '#D9D526')
             self.zone03 = self.main.writeText(self.x-self.size*3, self.piege0y*22-11, "[", self.main.fenetregame.canvas, False, 15, '#D9D526')
             self.zone04 = self.main.writeText(self.x+self.size*3, self.piege0y*22-11, "]", self.main.fenetregame.canvas, False, 15, '#D9D526')
-            for a in self.main.fenetregame.other:
-                if a not in self.main.fenetregame.invilist:
-                    self.main.fenetregame.canvas.tag_raise(self.main.fenetregame.other[a][3])
+
+        if self.id0 is not None:
+            self.main.fenetregame.canvas.delete(self.id0)
+        self.id0 = self.main.fenetregame.canvas.create_image(self.main.fenetregame.posy, self.main.fenetregame.posx, image=self.main.image["tache"+str(random.randint(1, 3))])
+
         self.piege0 = 0
 
     def startpiege1(self):
